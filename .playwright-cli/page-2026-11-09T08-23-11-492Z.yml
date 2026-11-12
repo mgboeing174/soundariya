@@ -1,0 +1,387 @@
+- generic [ref=e3]:
+  - main [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button "Open menu" [ref=e7]
+        - navigation [ref=e11]:
+          - link "ABOUT" [ref=e12] [cursor=pointer]:
+            - /url: "#about"
+          - link "SERVICES" [ref=e13] [cursor=pointer]:
+            - /url: "#services"
+          - link "GALLERY" [ref=e14] [cursor=pointer]:
+            - /url: "#gallery"
+          - link "BOOKING" [ref=e15] [cursor=pointer]:
+            - /url: "#booking"
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - paragraph [ref=e21]: FUTURE LOOKS GOOD ON YOU
+          - heading "SOUNDARIYA" [level=1] [ref=e22]
+          - paragraph [ref=e24]: BEAUTY PARLOUR. SAME YOU. JUST MORE POTENTIAL.
+          - link "EXPLORE THE COLLECTION" [ref=e26] [cursor=pointer]:
+            - /url: "#booking"
+        - img "Bharatanatyam dancer" [ref=e30]
+        - generic:
+          - img "Traditional model"
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - heading "A Haven of Serenity" [level=2] [ref=e36]
+        - paragraph [ref=e37]: At Soundariya Beauty Parlour, we believe that true beauty is an expression of inner peace and personal care. Nestled in the heart of the city, our parlour offers a sanctuary where modern expertise meets timeless traditions.
+        - paragraph [ref=e38]: Our team of dedicated professionals uses only the finest, carefully curated products to ensure every service leaves you feeling rejuvenated, confident, and celebrated.
+        - generic [ref=e39]:
+          - link "Our Services" [ref=e40] [cursor=pointer]:
+            - /url: "#services"
+          - link "Book Now" [ref=e41] [cursor=pointer]:
+            - /url: "#booking"
+      - img "Soundariya Beauty Parlour Interior" [ref=e44]
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]: Our Treatments
+        - heading "Our Services" [level=2] [ref=e49]
+        - paragraph [ref=e50]: Discover our range of premium beauty treatments designed to enhance your natural beauty.
+      - generic [ref=e51]:
+        - button "All" [ref=e52]
+        - button "Hair Care" [ref=e53]
+        - button "Skin Care" [ref=e54]
+        - button "Bridal Makeup" [ref=e55]
+        - button "Hair Styling" [ref=e56]
+        - button "Facial Treatments" [ref=e57]
+        - button "Beauty Treatments" [ref=e58]
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - generic [ref=e61]:
+            - img "Hair Cut & Styling" [ref=e62]
+            - generic [ref=e71]: ₹2,500est.
+          - generic [ref=e73]:
+            - generic [ref=e74]: Hair Care
+            - heading "Hair Cut & Styling" [level=3] [ref=e75]
+            - paragraph [ref=e76]: Precision cutting and styling tailored to your hair type, face shape and personal style.
+            - button "Book Now" [ref=e77]
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - img "Hair Repair & Treatment" [ref=e83]
+            - generic [ref=e89]: ₹4,500est.
+          - generic [ref=e91]:
+            - generic [ref=e92]: Hair Care
+            - heading "Hair Repair & Treatment" [level=3] [ref=e93]
+            - paragraph [ref=e94]: Deep-conditioning treatments and keratin rituals to restore strength, shine and manageability.
+            - button "Book Now" [ref=e95]
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - img "Bridal Makeup" [ref=e101]
+            - generic [ref=e108]: ₹12,000est.
+          - generic [ref=e110]:
+            - generic [ref=e111]: Bridal Makeup
+            - heading "Bridal Makeup" [level=3] [ref=e112]
+            - paragraph [ref=e113]: Exquisite bridal makeup artistry designed to enhance your natural beauty on your most memorable day.
+            - button "Book Now" [ref=e114]
+        - generic [ref=e118]:
+          - generic [ref=e119]:
+            - img "Hair Colour" [ref=e120]
+            - generic [ref=e129]: ₹5,500est.
+          - generic [ref=e131]:
+            - generic [ref=e132]: Hair Colour
+            - heading "Hair Colour" [level=3] [ref=e133]
+            - paragraph [ref=e134]: Expert colouring and balayage services using premium, salon-grade colourants for lasting vibrancy.
+            - button "Book Now" [ref=e135]
+        - generic [ref=e139]:
+          - generic [ref=e140]:
+            - img "Deep Cleansing Facial" [ref=e141]
+            - generic [ref=e147]: ₹3,500est.
+          - generic [ref=e149]:
+            - generic [ref=e150]: Facial Treatments
+            - heading "Deep Cleansing Facial" [level=3] [ref=e151]
+            - paragraph [ref=e152]: Nourishing facial rituals and personalized treatments to reveal your natural radiance.
+            - button "Book Now" [ref=e153]
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - img "Manicure & Pedicure" [ref=e159]
+            - generic [ref=e167]: ₹2,800est.
+          - generic [ref=e169]:
+            - generic [ref=e170]: Beauty Treatments
+            - heading "Manicure & Pedicure" [level=3] [ref=e171]
+            - paragraph [ref=e172]: Indulgent hand and foot care with luxurious treatments to leave you feeling pampered and refreshed.
+            - button "Book Now" [ref=e173]
+        - generic [ref=e177]:
+          - generic [ref=e178]:
+            - img "Body Wrap & Massage" [ref=e179]
+            - generic [ref=e184]: ₹4,200est.
+          - generic [ref=e186]:
+            - generic [ref=e187]: Beauty Treatments
+            - heading "Body Wrap & Massage" [level=3] [ref=e188]
+            - paragraph [ref=e189]: Relaxing massages and body wraps to rejuvenate your mind, body and spirit.
+            - button "Book Now" [ref=e190]
+        - generic [ref=e194]:
+          - generic [ref=e195]:
+            - img "Bridal Package" [ref=e196]
+            - generic [ref=e201]: ₹18,000est.
+          - generic [ref=e203]:
+            - generic [ref=e204]: Bridal Makeup
+            - heading "Bridal Package" [level=3] [ref=e205]
+            - paragraph [ref=e206]: Complete bridal package including makeup, hair styling and pre-wedding consultation.
+            - button "Book Now" [ref=e207]
+    - generic [ref=e212]:
+      - generic [ref=e213]:
+        - generic [ref=e214]: Visual Showcase
+        - heading "Our Gallery" [level=2] [ref=e215]
+        - paragraph [ref=e216]: Explore our portfolio of bridal makeovers, skin treatments, hair styling and transformations.
+      - generic [ref=e218]:
+        - generic [ref=e219]:
+          - heading "Before & After Transformation" [level=3] [ref=e220]
+          - paragraph [ref=e221]: Slide to experience the difference our signature bridal makeover brings
+        - slider "Before and After transformation slider" [ref=e222]:
+          - generic [ref=e223]:
+            - img "Before & After Transformation - BEFORE"
+            - generic: BEFORE
+          - generic [ref=e224]:
+            - img "Before & After Transformation - AFTER"
+            - generic: AFTER
+      - generic [ref=e225]:
+        - button "All" [ref=e226]
+        - button "Bridal Makeup" [ref=e227]
+        - button "Hair Styling" [ref=e228]
+        - button "Hair Colour" [ref=e229]
+        - button "Skin Care" [ref=e230]
+        - button "Transformations" [ref=e231]
+      - generic [ref=e232]:
+        - generic [ref=e233] [cursor=pointer]:
+          - img "Traditional South Indian bridal makeup with ethnic gold jewellery" [ref=e234]
+          - generic [ref=e235]:
+            - generic [ref=e236]: Bridal Makeup
+            - heading "Royal Tamil Bridal Look" [level=4] [ref=e237]
+            - generic [ref=e238]: Click to expand
+        - generic [ref=e245] [cursor=pointer]:
+          - img "Classic bridal makeover with intricate hair flowers and glow" [ref=e246]
+          - generic [ref=e247]:
+            - generic [ref=e248]: Bridal Makeup
+            - heading "Traditional Wedding Makeup" [level=4] [ref=e249]
+            - generic [ref=e250]: Click to expand
+        - generic [ref=e257] [cursor=pointer]:
+          - img "Reception bridal makeup look with subtle glam focus" [ref=e258]
+          - generic [ref=e259]:
+            - generic [ref=e260]: Bridal Makeup
+            - heading "Reception Evening Glam" [level=4] [ref=e261]
+            - generic [ref=e262]: Click to expand
+        - generic [ref=e269] [cursor=pointer]:
+          - img "Precision hair cut and blow dry styling session" [ref=e270]
+          - generic [ref=e271]:
+            - generic [ref=e272]: Hair Styling
+            - heading "Precision Layer Cut & Blowout" [level=4] [ref=e273]
+            - generic [ref=e274]: Click to expand
+        - generic [ref=e281] [cursor=pointer]:
+          - img "Elegant updo hairstyle for festive occasions" [ref=e282]
+          - generic [ref=e283]:
+            - generic [ref=e284]: Hair Styling
+            - heading "Festive Braid & Floral Updo" [level=4] [ref=e285]
+            - generic [ref=e286]: Click to expand
+        - generic [ref=e293] [cursor=pointer]:
+          - img "Smoothing and gloss hair treatment styling" [ref=e294]
+          - generic [ref=e295]:
+            - generic [ref=e296]: Hair Styling
+            - heading "Silky Hair Smoothening" [level=4] [ref=e297]
+            - generic [ref=e298]: Click to expand
+        - generic [ref=e305] [cursor=pointer]:
+          - img "Honey balayage and soft warm highlights" [ref=e306]
+          - generic [ref=e307]:
+            - generic [ref=e308]: Hair Colour
+            - heading "Caramel Balayage Highlights" [level=4] [ref=e309]
+            - generic [ref=e310]: Click to expand
+        - generic [ref=e317] [cursor=pointer]:
+          - img "Rich chocolate hair tint and glossy finish" [ref=e318]
+          - generic [ref=e319]:
+            - generic [ref=e320]: Hair Colour
+            - heading "Deep Chocolate Gloss" [level=4] [ref=e321]
+            - generic [ref=e322]: Click to expand
+        - generic [ref=e329] [cursor=pointer]:
+          - img "Global hair colour makeover with dimension" [ref=e330]
+          - generic [ref=e331]:
+            - generic [ref=e332]: Hair Colour
+            - heading "Global Sun-Kissed Tone" [level=4] [ref=e333]
+            - generic [ref=e334]: Click to expand
+        - generic [ref=e341] [cursor=pointer]:
+          - img "Radiance facial treatment and skin consultation" [ref=e342]
+          - generic [ref=e343]:
+            - generic [ref=e344]: Skin Care
+            - heading "Hydra Glow Facial" [level=4] [ref=e345]
+            - generic [ref=e346]: Click to expand
+        - generic [ref=e353] [cursor=pointer]:
+          - img "Deep cleansing organic face mask treatment" [ref=e354]
+          - generic [ref=e355]:
+            - generic [ref=e356]: Skin Care
+            - heading "Herbal Detox Facial Ritual" [level=4] [ref=e357]
+            - generic [ref=e358]: Click to expand
+        - generic [ref=e365] [cursor=pointer]:
+          - img "Rejuvenating anti-aging skin therapy ritual" [ref=e366]
+          - generic [ref=e367]:
+            - generic [ref=e368]: Skin Care
+            - heading "Gold Collagen Spa Treatment" [level=4] [ref=e369]
+            - generic [ref=e370]: Click to expand
+        - generic [ref=e377] [cursor=pointer]:
+          - img "Complete party glam transformation before-and-after moment" [ref=e378]
+          - generic [ref=e379]:
+            - generic [ref=e380]: Transformations
+            - heading "Evening Party Makeover" [level=4] [ref=e381]
+            - generic [ref=e382]: Click to expand
+        - generic [ref=e389] [cursor=pointer]:
+          - img "Pre-wedding skincare and makeup makeover result" [ref=e390]
+          - generic [ref=e391]:
+            - generic [ref=e392]: Transformations
+            - heading "Pre-Bridal Radiance Polish" [level=4] [ref=e393]
+            - generic [ref=e394]: Click to expand
+        - generic [ref=e401] [cursor=pointer]:
+          - img "Hair smoothening & styling transformation makeover" [ref=e402]
+          - generic [ref=e403]:
+            - generic [ref=e404]: Transformations
+            - heading "Frizz-to-Silk Hair Transformation" [level=4] [ref=e405]
+            - generic [ref=e406]: Click to expand
+    - generic [ref=e415]:
+      - generic [ref=e416]:
+        - img "Soundariya salon luxury bridal makeover experience" [ref=e417]
+        - generic [ref=e419]:
+          - generic [ref=e420]: Bespoke Pampering
+          - heading "The Soundariya Experience" [level=3] [ref=e421]
+          - paragraph [ref=e422]: Book your journey to radiance today. Our beauty artisans are ready to curate a personalized ritual tailored to you.
+          - generic [ref=e423]:
+            - generic [ref=e424]: 📍 123 Elegance St, Chennai
+            - generic [ref=e425]: 📞 +91 98765 43210
+      - generic [ref=e427]:
+        - generic [ref=e428]: Reserve Your Appointment
+        - heading "Book Appointment" [level=2] [ref=e429]
+        - paragraph [ref=e430]: Select your preferred service, date and time slot below.
+        - generic [ref=e431]:
+          - generic [ref=e432]:
+            - generic [ref=e433]: Full Name *
+            - textbox "Full Name *" [ref=e434]:
+              - /placeholder: Enter your full name
+          - generic [ref=e435]:
+            - generic [ref=e436]:
+              - generic [ref=e437]: Email Address *
+              - textbox "Email Address *" [ref=e438]:
+                - /placeholder: name@example.com
+            - generic [ref=e439]:
+              - generic [ref=e440]: Phone Number *
+              - textbox "Phone Number *" [ref=e441]:
+                - /placeholder: 98765 43210
+          - generic [ref=e442]:
+            - generic [ref=e443]:
+              - generic [ref=e444]: Choose Service *
+              - combobox "Choose Service *" [ref=e445]:
+                - option "Select a treatment service" [selected]
+                - option "Hair Cut & Styling (₹2,500)"
+                - option "Hair Repair & Treatment (₹4,500)"
+                - option "Bridal Makeup (₹12,000)"
+                - option "Hair Colour (₹5,500)"
+                - option "Deep Cleansing Facial (₹3,500)"
+                - option "Manicure & Pedicure (₹2,800)"
+                - option "Body Wrap & Massage (₹4,200)"
+                - option "Bridal Package (₹18,000)"
+            - generic [ref=e446]:
+              - generic [ref=e447]: Preferred Date *
+              - textbox "Preferred Date *" [ref=e448]
+          - generic [ref=e449]:
+            - generic [ref=e450]: Preferred Time Slot *
+            - combobox "Preferred Time Slot *" [ref=e451]:
+              - option "Select a time slot" [selected]
+              - option "10:00 AM - Morning Slot"
+              - option "11:30 AM - Late Morning Slot"
+              - option "01:30 PM - Afternoon Slot"
+              - option "03:00 PM - Late Afternoon Slot"
+              - option "05:00 PM - Evening Slot"
+              - option "06:30 PM - Late Evening Slot"
+          - generic [ref=e452]:
+            - generic [ref=e453]: Additional Notes / Requests (Optional)
+            - textbox "Additional Notes / Requests (Optional)" [ref=e454]:
+              - /placeholder: Mention skin concerns, preferred stylist, or event details...
+          - generic [ref=e455]:
+            - button "Request Appointment" [ref=e456] [cursor=pointer]
+            - button "Reset" [ref=e458]
+    - generic [ref=e460]:
+      - generic [ref=e461]:
+        - heading "Visit Us" [level=2] [ref=e462]
+        - paragraph [ref=e463]: We invite you to experience Soundariya in person. Reach out to schedule a consultation or visit our serene location.
+      - generic [ref=e464]:
+        - generic [ref=e465]:
+          - iframe [ref=e466]
+          - generic [ref=e467]:
+            - paragraph [ref=e468]: Chennai Headquarters
+            - paragraph [ref=e469]: 123 Elegance St, Beauty District, Chennai
+        - generic [ref=e470]:
+          - heading "Contact Information" [level=3] [ref=e473]
+          - generic [ref=e474]:
+            - generic [ref=e475]:
+              - paragraph [ref=e476]: Address
+              - paragraph [ref=e477]: 123 Elegance St, Chennai, Tamil Nadu
+            - generic [ref=e478]:
+              - paragraph [ref=e479]: Phone
+              - paragraph [ref=e480]: +91 98765 43210
+            - generic [ref=e481]:
+              - paragraph [ref=e482]: Email
+              - paragraph [ref=e483]: hello@soundariya.com
+            - generic [ref=e484]:
+              - paragraph [ref=e485]: Social Media
+              - generic [ref=e486]:
+                - link "Instagram" [ref=e487] [cursor=pointer]:
+                  - /url: "#"
+                - link "Facebook" [ref=e488] [cursor=pointer]:
+                  - /url: "#"
+                - link "Twitter" [ref=e489] [cursor=pointer]:
+                  - /url: "#"
+  - contentinfo [ref=e490]:
+    - generic [ref=e491]:
+      - generic [ref=e492]:
+        - generic [ref=e493]:
+          - heading "Soundariya" [level=3] [ref=e494]
+          - paragraph [ref=e495]: Beauty Parlour
+        - paragraph [ref=e496]: Experience the pinnacle of luxury beauty and wellness. Our expert team is dedicated to enhancing your natural radiance through bespoke treatments.
+        - generic [ref=e497]:
+          - link [ref=e498] [cursor=pointer]:
+            - /url: "#"
+          - link [ref=e502] [cursor=pointer]:
+            - /url: "#"
+          - link [ref=e508] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e511]:
+        - heading "Quick Links" [level=4] [ref=e512]
+        - list [ref=e513]:
+          - listitem [ref=e514]:
+            - link "Home" [ref=e515] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e516]:
+            - link "About Us" [ref=e517] [cursor=pointer]:
+              - /url: "#about"
+          - listitem [ref=e518]:
+            - link "Services" [ref=e519] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e520]:
+            - link "Gallery" [ref=e521] [cursor=pointer]:
+              - /url: "#gallery"
+          - listitem [ref=e522]:
+            - link "Book Appointment" [ref=e523] [cursor=pointer]:
+              - /url: "#booking"
+      - generic [ref=e524]:
+        - heading "Contact" [level=4] [ref=e525]
+        - list [ref=e526]:
+          - listitem [ref=e527]:
+            - generic [ref=e531]: 123 Elegance St, Beauty DistrictChennai, Tamil Nadu
+          - listitem [ref=e532]:
+            - generic [ref=e535]: +91 98765 43210
+          - listitem [ref=e536]:
+            - generic [ref=e540]: hello@soundariya.com
+      - generic [ref=e541]:
+        - heading "Hours" [level=4] [ref=e542]
+        - list [ref=e543]:
+          - listitem [ref=e544]:
+            - generic [ref=e545]: Mon - Fri
+            - generic [ref=e546]: 10:00 AM - 8:00 PM
+          - listitem [ref=e547]:
+            - generic [ref=e548]: Saturday
+            - generic [ref=e549]: 10:00 AM - 9:00 PM
+          - listitem [ref=e550]:
+            - generic [ref=e551]: Sunday
+            - generic [ref=e552]: 11:00 AM - 6:00 PM
+    - generic [ref=e553]:
+      - paragraph [ref=e554]: © 2024 Soundariya Beauty Parlour. All Rights Reserved.
+      - generic [ref=e555]:
+        - link "Privacy Policy" [ref=e556] [cursor=pointer]:
+          - /url: "#"
+        - link "Terms of Service" [ref=e557] [cursor=pointer]:
+          - /url: "#"

@@ -1,0 +1,131 @@
+// Shared service catalogue used by the Services, Gallery and Booking sections.
+// Prices are clearly identifiable editable placeholders — replace with real
+// figures when the business provides them.
+
+export const SERVICE_CATEGORIES = [
+  'All',
+  'Hair Care',
+  'Skin Care',
+  'Bridal Makeup',
+  'Hair Styling',
+  'Facial Treatments',
+  'Beauty Treatments',
+];
+
+export const services = [
+  {
+    key: 'hair-cut',
+    name: 'Hair Cut & Styling',
+    category: 'Hair Care',
+    description: 'Precision cutting and styling tailored to your hair type, face shape and personal style.',
+    price: '₹2,500',
+    pricePlaceholder: true,
+    image: '/assets/images/service-hair.jpg',
+    icon: 'scissors',
+  },
+  {
+    key: 'hair-repair',
+    name: 'Hair Repair & Treatment',
+    category: 'Hair Care',
+    description: 'Deep-conditioning treatments and keratin rituals to restore strength, shine and manageability.',
+    price: '₹4,500',
+    pricePlaceholder: true,
+    image: '/assets/images/gallery-hair-1.jpg',
+    icon: 'sparkles',
+  },
+  {
+    key: 'bridal-makeup',
+    name: 'Bridal Makeup',
+    category: 'Bridal Makeup',
+    description: 'Exquisite bridal makeup artistry designed to enhance your natural beauty on your most memorable day.',
+    price: '₹12,000',
+    pricePlaceholder: true,
+    image: '/assets/images/service-makeup.jpg',
+    icon: 'brush',
+  },
+  {
+    key: 'hair-colour',
+    name: 'Hair Colour',
+    category: 'Hair Colour',
+    description: 'Expert colouring and balayage services using premium, salon-grade colourants for lasting vibrancy.',
+    price: '₹5,500',
+    pricePlaceholder: true,
+    image: '/assets/images/gallery-colour-1.jpg',
+    icon: 'palette',
+  },
+  {
+    key: 'facial',
+    name: 'Deep Cleansing Facial',
+    category: 'Facial Treatments',
+    description: 'Nourishing facial rituals and personalized treatments to reveal your natural radiance.',
+    price: '₹3,500',
+    pricePlaceholder: true,
+    image: '/assets/images/service-skin.jpg',
+    icon: 'smile',
+  },
+  {
+    key: 'manicure',
+    name: 'Manicure & Pedicure',
+    category: 'Beauty Treatments',
+    description: 'Indulgent hand and foot care with luxurious treatments to leave you feeling pampered and refreshed.',
+    price: '₹2,800',
+    pricePlaceholder: true,
+    image: '/assets/images/service-manicure.jpg',
+    icon: 'hand',
+  },
+  {
+    key: 'body-wrap',
+    name: 'Body Wrap & Massage',
+    category: 'Beauty Treatments',
+    description: 'Relaxing massages and body wraps to rejuvenate your mind, body and spirit.',
+    price: '₹4,200',
+    pricePlaceholder: true,
+    image: '/assets/images/service-body.jpg',
+    icon: 'heart',
+  },
+  {
+    key: 'bridal-package',
+    name: 'Bridal Package',
+    category: 'Bridal Makeup',
+    description: 'Complete bridal package including makeup, hair styling and pre-wedding consultation.',
+    price: '₹18,000',
+    pricePlaceholder: true,
+    image: '/assets/images/gallery-bridal-1.jpg',
+    icon: 'crown',
+  },
+  {
+    key: 'makeup',
+    name: 'Makeup',
+    category: 'Beauty Treatments',
+    description: 'Flawless everyday and occasion makeup tailored to your skin tone and style.',
+    price: '₹3,000',
+    pricePlaceholder: true,
+    image: '/assets/images/service-makeup.jpg',
+    icon: 'brush',
+  },
+  {
+    key: 'hair-styling',
+    name: 'Hair Styling',
+    category: 'Hair Styling',
+    description: 'Artistic hair styling for engagements, receptions and special events.',
+    price: '₹2,500',
+    pricePlaceholder: true,
+    image: '/assets/images/gallery-hair-1.jpg',
+    icon: 'sparkles',
+  },
+  {
+    key: 'saree-draping',
+    name: 'Saree Draping',
+    category: 'Hair Styling',
+    description: 'Traditional and designer saree draping styles to complete your festive look.',
+    price: '₹1,500',
+    pricePlaceholder: true,
+    image: '/assets/images/gallery-bridal-1.jpg',
+    icon: 'shirt',
+  },
+];
+
+export function serviceLabel(key) {
+  const found = services.find((s) => s.key === key);
+  return found ? found.name : '';
+}

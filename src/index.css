@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-parlour-ivory: #FFFDF5;
+  --color-parlour-cream: #F7F1E8;
+  --color-parlour-rose: #DDBEA9;
+  --color-parlour-pink: #E8CFCB;
+  --color-parlour-pink-muted: #E8CFCB;
+  --color-parlour-gold: #D4AF37;
+  --color-parlour-champagne: #D4AF37;
+  --color-parlour-accent: #A44A3F;
+  --color-parlour-terracotta: #A44A3F;
+  --color-parlour-brown: #432818;
+  --color-parlour-espresso: #432818;
+
+  /* Reference landing page palette (the system every page follows) */
+  --color-parlour-lavender: #dea2d8;
+  --color-parlour-lavender-mid: #e1a1d5;
+  --color-parlour-lavender-end: #da9ed2;
+  --color-parlour-plum: #380b44;
+  --color-parlour-plum-deep: #2a0730;
+  --color-parlour-blush: #fce4ec;
+  --color-parlour-blush-deep: #f3d4e0;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Anton", "Impact", "Haettenschweiler", sans-serif;
+}
+
+:root {
+  background-color: #fce4ec;
+  color: #380b44;
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: #fce4ec;
+    color: #380b44;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+}
+
+::selection {
+  background-color: #dea2d8;
+  color: #380b44;
+}
+
+/* Reference display typography */
+.display-headline {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.85;
+}
+
+/* Reusable styling helpers (recolored to the reference palette) */
+.btn-luxury-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #380b44;
+  color: #fce4ec;
+  padding: 0.875rem 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #380b44;
+}
+
+.btn-luxury-primary:hover {
+  background-color: #fce4ec;
+  color: #380b44;
+  border-color: #380b44;
+}
+
+.btn-luxury-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #380b44;
+  padding: 0.875rem 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1.5px solid #380b44;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 9999px;
+}
+
+.btn-luxury-outline:hover {
+  background-color: #380b44;
+  color: #fce4ec;
+}
+
+.card-luxury {
+  background-color: #ffffff;
+  border: 1px solid rgba(56, 11, 68, 0.08);
+  transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-luxury:hover {
+  border-color: rgba(56, 11, 68, 0.25);
+  box-shadow: 0 12px 32px -12px rgba(56, 11, 68, 0.15);
+}
+
+/* Keyframes & Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+/* ---------- Responsive global utilities ---------- */
+.no-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .no-mobile {
+    display: flex;
+  }
+}
+
+/* Touch-friendly tap targets */
+@media (hover: none) and (pointer: coarse) {
+  a, button, [role="button"], input, select, textarea {
+    min-height: 44px;
+  }
+}
+
+/* Full-width form controls on small screens */
+@media (max-width: 640px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  select,
+  textarea {
+    width: 100% !important;
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

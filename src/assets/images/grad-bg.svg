@@ -1,0 +1,58 @@
+<svg width="1200" height="1600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dea2d8"/>
+      <stop offset="1" stop-color="#e1a1d5"/>
+    </linearGradient>
+    <radialGradient id="hair" cx="0.5" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#ff8c00"/>
+      <stop offset="0.6" stop-color="#ff6b00"/>
+      <stop offset="1" stop-color="#e05500"/>
+    </radialGradient>
+    <linearGradient id="jacket" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff7a00"/>
+      <stop offset="1" stop-color="#e84d00"/>
+    </linearGradient>
+    <radialGradient id="skin" cx="0.5" cy="0.4" r="0.6">
+      <stop offset="0" stop-color="#f4c9a8"/>
+      <stop offset="1" stop-color="#e0a080"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1600" fill="url(#g)"/>
+  <!-- model positioned on right side -->
+  <g transform="translate(560, 0)">
+    <!-- hair back -->
+    <ellipse cx="300" cy="380" rx="220" ry="200" fill="url(#hair)"/>
+    <!-- hair bob front -->
+    <path d="M120,340 Q140,250 300,230 Q460,250 480,340 Q470,520 420,640 Q300,700 180,640 Q130,520 120,340 Z" fill="url(#hair)"/>
+    <!-- bangs -->
+    <path d="M150,300 Q300,250 450,300 Q440,360 300,370 Q160,360 150,300 Z" fill="url(#hair)"/>
+    <!-- face -->
+    <ellipse cx="300" cy="520" rx="130" ry="170" fill="url(#skin)"/>
+    <!-- neck -->
+    <rect x="270" y="660" width="60" height="90" fill="url(#skin)"/>
+    <!-- sunglasses -->
+    <rect x="185" y="470" width="110" height="55" rx="12" fill="#ff5a00" stroke="#3a0d00" stroke-width="3"/>
+    <rect x="305" y="470" width="110" height="55" rx="12" fill="#ff5a00" stroke="#3a0d00" stroke-width="3"/>
+    <rect x="290" y="485" width="20" height="25" rx="3" fill="#1a0a00"/>
+    <rect x="330" y="485" width="20" height="25" rx="3" fill="#1a0a00"/>
+    <rect x="295" y="492" width="10" height="11" fill="#000"/>
+    <rect x="335" y="492" width="10" height="11" fill="#000"/>
+    <!-- bridge -->
+    <rect x="295" y="485" width="10" height="25" fill="#3a0d00"/>
+    <!-- nose -->
+    <path d="M300,540 Q290,570 300,590" stroke="#c08060" stroke-width="4" fill="none"/>
+    <!-- lips -->
+    <path d="M270,640 Q300,660 330,640" stroke="#c04050" stroke-width="6" fill="none"/>
+    <path d="M270,642 Q300,665 330,642" stroke="#d05060" stroke-width="4" fill="none"/>
+    <!-- jacket -->
+    <path d="M100,720 Q120,900 180,1100 Q300,1400 420,1100 Q480,900 500,720 Q300,760 100,720 Z" fill="url(#jacket)"/>
+    <path d="M300,720 L300,1400" stroke="#c84000" stroke-width="6" fill="none"/>
+    <path d="M300,720 L300,1400" stroke="#ff8c00" stroke-width="2" fill="none"/>
+    <!-- collar -->
+    <path d="M240,720 Q300,760 360,720" stroke="#d05500" stroke-width="8" fill="none"/>
+    <path d="M240,720 Q300,760 360,720" stroke="#ff9a00" stroke-width="3" fill="none"/>
+    <!-- shoulder highlight -->
+    <path d="M120,740 Q180,780 240,800" stroke="rgba(255,180,80,0.5)" stroke-width="20" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

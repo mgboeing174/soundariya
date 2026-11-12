@@ -1,0 +1,230 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - link "Soundariya Beauty Parlour" [ref=e6] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e7]: Soundariya
+        - generic [ref=e8]: Beauty Parlour
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: "#"
+        - link "About" [ref=e11] [cursor=pointer]:
+          - /url: "#about"
+        - link "Services" [ref=e12] [cursor=pointer]:
+          - /url: "#services"
+        - link "Gallery" [ref=e13] [cursor=pointer]:
+          - /url: "#gallery"
+        - link "Contact" [ref=e14] [cursor=pointer]:
+          - /url: "#contact"
+        - link "Book Now" [ref=e15] [cursor=pointer]:
+          - /url: "#booking"
+  - main [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e25]:
+        - heading "Elegance Rediscovered" [level=1] [ref=e26]:
+          - generic [ref=e27]: Elegance
+          - generic [ref=e28]: Rediscovered
+        - paragraph [ref=e29]: Where artistry meets wellness. Discover bespoke beauty treatments tailored just for you.
+        - generic [ref=e30]:
+          - link "Book an Appointment" [ref=e31] [cursor=pointer]:
+            - /url: "#booking"
+          - link "Explore Services" [ref=e32] [cursor=pointer]:
+            - /url: "#services"
+      - generic [ref=e33]: Scroll to explore
+    - generic [ref=e41]:
+      - generic [ref=e42]:
+        - heading "A Haven of Serenity" [level=2] [ref=e43]
+        - paragraph [ref=e44]: At Soundariya Beauty Parlour, we believe that true beauty is an expression of inner peace and personal care. Nestled in the heart of the city, our parlour offers a sanctuary where modern expertise meets timeless traditions.
+        - paragraph [ref=e45]: Our team of dedicated professionals uses only the finest, carefully curated products to ensure every service leaves you feeling rejuvenated, confident, and celebrated.
+        - generic [ref=e46]:
+          - link "Our Services" [ref=e47] [cursor=pointer]:
+            - /url: "#services"
+          - link "Book Now" [ref=e48] [cursor=pointer]:
+            - /url: "#booking"
+      - img "Soundariya Beauty Parlour Interior" [ref=e51]
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - heading "Our Services" [level=2] [ref=e57]
+        - paragraph [ref=e58]: Discover our range of premium beauty treatments designed to enhance your natural beauty
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - heading "Hair Care" [level=3] [ref=e69]
+          - paragraph [ref=e70]: Precision cutting, styling, and revitalizing treatments tailored to your unique hair type and style preferences.
+          - link "Book Now" [ref=e71] [cursor=pointer]:
+            - /url: "#booking"
+        - generic [ref=e74]:
+          - heading "Skin Care" [level=3] [ref=e80]
+          - paragraph [ref=e81]: Deep cleansing facials, nourishing skincare rituals, and personalized treatments to reveal your natural radiance.
+          - link "Book Now" [ref=e82] [cursor=pointer]:
+            - /url: "#booking"
+        - generic [ref=e85]:
+          - heading "Bridal Makeup" [level=3] [ref=e92]
+          - paragraph [ref=e93]: Exquisite makeup artistry designed to enhance your natural beauty for your most memorable day.
+          - link "Book Now" [ref=e94] [cursor=pointer]:
+            - /url: "#booking"
+        - generic [ref=e97]:
+          - heading "Manicure & Pedicure" [level=3] [ref=e105]
+          - paragraph [ref=e106]: Indulgent hand and foot care with luxurious treatments to leave you feeling pampered and refreshed.
+          - link "Book Now" [ref=e107] [cursor=pointer]:
+            - /url: "#booking"
+        - generic [ref=e110]:
+          - heading "Body Treatments" [level=3] [ref=e115]
+          - paragraph [ref=e116]: Relaxing massages and body wraps to rejuvenate your mind, body, and spirit.
+          - link "Book Now" [ref=e117] [cursor=pointer]:
+            - /url: "#booking"
+    - generic [ref=e123]:
+      - generic [ref=e124]:
+        - heading "Our Gallery" [level=2] [ref=e125]
+        - paragraph [ref=e126]: Explore our collection of before-and-after transformations and beautiful moments.
+      - generic [ref=e127]:
+        - generic [ref=e128] [cursor=pointer]:
+          - img "Gallery Image 1" [ref=e130]
+          - generic [ref=e131]: View Image 1
+        - generic [ref=e134] [cursor=pointer]:
+          - img "Gallery Image 2" [ref=e136]
+          - generic [ref=e137]: View Image 2
+        - generic [ref=e140] [cursor=pointer]:
+          - img "Gallery Image 3" [ref=e142]
+          - generic [ref=e143]: View Image 3
+        - generic [ref=e146] [cursor=pointer]:
+          - img "Gallery Image 4" [ref=e148]
+          - generic [ref=e149]: View Image 4
+        - generic [ref=e152] [cursor=pointer]:
+          - img "Gallery Image 5" [ref=e154]
+          - generic [ref=e155]: View Image 5
+        - generic [ref=e158] [cursor=pointer]:
+          - img "Gallery Image 6" [ref=e160]
+          - generic [ref=e161]: View Image 6
+        - generic [ref=e164] [cursor=pointer]:
+          - img "Gallery Image 7" [ref=e166]
+          - generic [ref=e167]: View Image 7
+        - generic [ref=e170] [cursor=pointer]:
+          - img "Gallery Image 8" [ref=e172]
+          - generic [ref=e173]: View Image 8
+    - generic [ref=e177]:
+      - heading "Book Your Appointment" [level=2] [ref=e180]
+      - paragraph [ref=e181]: Experience the pinnacle of luxury beauty and wellness at Soundariya Beauty Parlour
+      - generic [ref=e182]:
+        - generic [ref=e183]:
+          - generic [ref=e184]: Full Name
+          - textbox "Your full name" [ref=e185]
+        - generic [ref=e186]:
+          - generic [ref=e187]: Email
+          - textbox "your.email@example.com" [ref=e188]
+        - generic [ref=e189]:
+          - generic [ref=e190]:
+            - generic [ref=e191]: Service
+            - combobox [ref=e192]:
+              - option "Select a service" [selected]
+              - option "Hair Care"
+              - option "Skin Care"
+              - option "Bridal Makeup"
+              - option "Manicure & Pedicure"
+              - option "Body Treatments"
+          - generic [ref=e193]:
+            - generic [ref=e194]: Date
+            - textbox [ref=e195]
+        - generic [ref=e196]:
+          - generic [ref=e197]: Time
+          - combobox [ref=e198]:
+            - option "Select a time" [selected]
+            - option "10:00 AM"
+            - option "11:00 AM"
+            - option "12:00 PM"
+            - option "1:00 PM"
+            - option "2:00 PM"
+            - option "3:00 PM"
+            - option "4:00 PM"
+            - option "5:00 PM"
+        - generic [ref=e199]:
+          - button "Book Appointment" [ref=e200]
+          - button "Reset Form" [ref=e201]
+    - generic [ref=e205]:
+      - generic [ref=e206]:
+        - heading "Visit Us" [level=2] [ref=e207]
+        - paragraph [ref=e208]: We invite you to experience Soundariya in person. Reach out to schedule a consultation or visit our serene location.
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - img "Location Map" [ref=e212]
+          - generic [ref=e213]: Our Location
+        - generic [ref=e215]:
+          - heading "Contact Information" [level=3] [ref=e218]
+          - generic [ref=e219]:
+            - generic [ref=e220]:
+              - paragraph [ref=e221]: Address
+              - paragraph [ref=e222]: 123 Elegance St, Chennai, Tamil Nadu
+            - generic [ref=e223]:
+              - paragraph [ref=e224]: Phone
+              - paragraph [ref=e225]: +91 98765 43210
+            - generic [ref=e226]:
+              - paragraph [ref=e227]: Email
+              - paragraph [ref=e228]: hello@soundariya.com
+            - generic [ref=e229]:
+              - paragraph [ref=e230]: Social Media
+              - generic [ref=e231]:
+                - link "Instagram" [ref=e232] [cursor=pointer]:
+                  - /url: "#"
+                - link "Facebook" [ref=e233] [cursor=pointer]:
+                  - /url: "#"
+                - link "Twitter" [ref=e234] [cursor=pointer]:
+                  - /url: "#"
+  - contentinfo [ref=e235]:
+    - generic [ref=e236]:
+      - generic [ref=e237]:
+        - generic [ref=e238]:
+          - heading "Soundariya" [level=3] [ref=e239]
+          - paragraph [ref=e240]: Beauty Parlour
+        - paragraph [ref=e241]: Experience the pinnacle of luxury beauty and wellness. Our expert team is dedicated to enhancing your natural radiance through bespoke treatments.
+        - generic [ref=e242]:
+          - link [ref=e243] [cursor=pointer]:
+            - /url: "#"
+          - link [ref=e247] [cursor=pointer]:
+            - /url: "#"
+          - link [ref=e253] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e256]:
+        - heading "Quick Links" [level=4] [ref=e257]
+        - list [ref=e258]:
+          - listitem [ref=e259]:
+            - link "Home" [ref=e260] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e261]:
+            - link "About Us" [ref=e262] [cursor=pointer]:
+              - /url: "#about"
+          - listitem [ref=e263]:
+            - link "Services" [ref=e264] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e265]:
+            - link "Gallery" [ref=e266] [cursor=pointer]:
+              - /url: "#gallery"
+          - listitem [ref=e267]:
+            - link "Book Appointment" [ref=e268] [cursor=pointer]:
+              - /url: "#booking"
+      - generic [ref=e269]:
+        - heading "Contact" [level=4] [ref=e270]
+        - list [ref=e271]:
+          - listitem [ref=e272]:
+            - generic [ref=e276]: 123 Elegance St, Beauty DistrictChennai, Tamil Nadu
+          - listitem [ref=e277]:
+            - generic [ref=e280]: +91 98765 43210
+          - listitem [ref=e281]:
+            - generic [ref=e285]: hello@soundariya.com
+      - generic [ref=e286]:
+        - heading "Hours" [level=4] [ref=e287]
+        - list [ref=e288]:
+          - listitem [ref=e289]:
+            - generic [ref=e290]: Mon - Fri
+            - generic [ref=e291]: 10:00 AM - 8:00 PM
+          - listitem [ref=e292]:
+            - generic [ref=e293]: Saturday
+            - generic [ref=e294]: 10:00 AM - 9:00 PM
+          - listitem [ref=e295]:
+            - generic [ref=e296]: Sunday
+            - generic [ref=e297]: 11:00 AM - 6:00 PM
+    - generic [ref=e298]:
+      - paragraph [ref=e299]: © 2024 Soundariya Beauty Parlour. All Rights Reserved.
+      - generic [ref=e300]:
+        - link "Privacy Policy" [ref=e301] [cursor=pointer]:
+          - /url: "#"
+        - link "Terms of Service" [ref=e302] [cursor=pointer]:
+          - /url: "#"

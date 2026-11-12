@@ -1,0 +1,213 @@
+- generic [ref=e3]:
+  - main [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button "Open menu" [ref=e7]
+        - navigation [ref=e11]:
+          - link "ABOUT" [ref=e12] [cursor=pointer]:
+            - /url: "#about"
+          - link "SERVICES" [ref=e13] [cursor=pointer]:
+            - /url: "#services"
+          - link "GALLERY" [ref=e14] [cursor=pointer]:
+            - /url: "#gallery"
+          - link "BOOKING" [ref=e15] [cursor=pointer]:
+            - /url: "#booking"
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - paragraph [ref=e21]: FUTURE LOOKS GOOD ON YOU
+          - heading "SOUNDARIYA" [level=1] [ref=e22]
+          - paragraph [ref=e24]: BEAUTY PARLOUR. SAME YOU. JUST MORE POTENTIAL.
+          - link "EXPLORE THE COLLECTION" [ref=e26] [cursor=pointer]:
+            - /url: "#booking"
+        - img "Bharatanatyam dancer" [ref=e30]
+        - generic:
+          - img "Traditional model"
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - heading "A Haven of Serenity" [level=2] [ref=e36]
+        - paragraph [ref=e37]: At Soundariya Beauty Parlour, we believe that true beauty is an expression of inner peace and personal care. Nestled in the heart of the city, our parlour offers a sanctuary where modern expertise meets timeless traditions.
+        - paragraph [ref=e38]: Our team of dedicated professionals uses only the finest, carefully curated products to ensure every service leaves you feeling rejuvenated, confident, and celebrated.
+        - generic [ref=e39]:
+          - link "Our Services" [ref=e40] [cursor=pointer]:
+            - /url: "#services"
+          - link "Book Now" [ref=e41] [cursor=pointer]:
+            - /url: "#booking"
+      - img "Soundariya Beauty Parlour Interior" [ref=e44]
+    - generic [ref=e46]:
+      - generic [ref=e47]: THE ART OF BRIDAL BEAUTY
+      - heading "Bridal Makeup" [level=2] [ref=e48]
+      - generic [ref=e49]:
+        - paragraph [ref=e50]: Every bride deserves to feel extraordinary on her special day. At Soundariya, bridal makeup is thoughtfully crafted to enhance your natural beauty while complementing your personality, traditions and bridal attire.
+        - paragraph [ref=e51]: From refined elegance to timeless traditional looks, every detail is carefully considered to make your wedding moments unforgettable.
+      - paragraph [ref=e52]: Your day. Your beauty. Your story.
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - generic [ref=e56]: REAL BEAUTY, TIMELESS MEMORIES
+        - heading "Every Bride Has Her Moment" [level=2] [ref=e57]
+        - paragraph [ref=e58]: A glimpse into the art of bridal transformation, where every detail comes together to celebrate the bride.
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - heading "Before & After Transformation" [level=3] [ref=e62]
+          - paragraph [ref=e63]: Slide to experience the difference our signature bridal makeover brings
+        - slider "Before and After transformation slider" [ref=e64]:
+          - generic [ref=e65]:
+            - img "Before & After Transformation - BEFORE"
+            - generic: BEFORE
+          - generic [ref=e66]:
+            - img "Before & After Transformation - AFTER"
+            - generic: AFTER
+      - generic [ref=e67]:
+        - paragraph [ref=e69]: “On your special day, let your beauty tell your story.”
+        - generic [ref=e70]: ✦
+        - paragraph [ref=e75]: “Elegance is not about changing who you are. It is about bringing out the beauty that is already yours.”
+        - generic [ref=e76]: ✦
+        - paragraph [ref=e81]: “A timeless bridal look for a moment you will cherish forever.”
+    - generic [ref=e84]:
+      - generic [ref=e85]:
+        - img "Soundariya salon luxury bridal makeover experience" [ref=e86]
+        - generic [ref=e88]:
+          - generic [ref=e89]: Bespoke Pampering
+          - heading "The Soundariya Experience" [level=3] [ref=e90]
+          - paragraph [ref=e91]: Book your journey to radiance today. Our beauty artisans are ready to curate a personalized ritual tailored to you.
+          - generic [ref=e92]:
+            - generic [ref=e93]: 📍 123 Elegance St, Chennai
+            - generic [ref=e94]: 📞 +91 98765 43210
+      - generic [ref=e96]:
+        - generic [ref=e97]: Reserve Your Appointment
+        - heading "Book Appointment" [level=2] [ref=e98]
+        - paragraph [ref=e99]: Select your preferred service, date and time slot below.
+        - generic [ref=e100]:
+          - generic [ref=e101]:
+            - generic [ref=e102]: Full Name *
+            - textbox "Full Name *" [ref=e103]:
+              - /placeholder: Enter your full name
+          - generic [ref=e104]:
+            - generic [ref=e105]:
+              - generic [ref=e106]: Email Address *
+              - textbox "Email Address *" [ref=e107]:
+                - /placeholder: name@example.com
+            - generic [ref=e108]:
+              - generic [ref=e109]: Phone Number *
+              - textbox "Phone Number *" [ref=e110]:
+                - /placeholder: 98765 43210
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - generic [ref=e113]: Choose Service *
+              - combobox "Choose Service *" [ref=e114]:
+                - option "Select a treatment service" [selected]
+                - option "Hair Cut & Styling (₹2,500)"
+                - option "Hair Repair & Treatment (₹4,500)"
+                - option "Bridal Makeup (₹12,000)"
+                - option "Hair Colour (₹5,500)"
+                - option "Deep Cleansing Facial (₹3,500)"
+                - option "Manicure & Pedicure (₹2,800)"
+                - option "Body Wrap & Massage (₹4,200)"
+                - option "Bridal Package (₹18,000)"
+            - generic [ref=e115]:
+              - generic [ref=e116]: Preferred Date *
+              - textbox "Preferred Date *" [ref=e117]
+          - generic [ref=e118]:
+            - generic [ref=e119]: Preferred Time Slot *
+            - combobox "Preferred Time Slot *" [ref=e120]:
+              - option "Select a time slot" [selected]
+              - option "10:00 AM - Morning Slot"
+              - option "11:30 AM - Late Morning Slot"
+              - option "01:30 PM - Afternoon Slot"
+              - option "03:00 PM - Late Afternoon Slot"
+              - option "05:00 PM - Evening Slot"
+              - option "06:30 PM - Late Evening Slot"
+          - generic [ref=e121]:
+            - generic [ref=e122]: Additional Notes / Requests (Optional)
+            - textbox "Additional Notes / Requests (Optional)" [ref=e123]:
+              - /placeholder: Mention skin concerns, preferred stylist, or event details...
+          - generic [ref=e124]:
+            - button "Request Appointment" [ref=e125] [cursor=pointer]
+            - button "Reset" [ref=e127]
+    - generic [ref=e129]:
+      - generic [ref=e130]:
+        - heading "Visit Us" [level=2] [ref=e131]
+        - paragraph [ref=e132]: Reach out directly or visit us at our location. We are here to help you plan your bridal look.
+      - generic [ref=e133]:
+        - generic [ref=e134]:
+          - iframe [ref=e135]
+          - generic [ref=e136]:
+            - paragraph [ref=e137]: Soundariya Beauty Parlour
+            - paragraph [ref=e138]: Kandanur, Karaikudi, Tamil Nadu
+        - generic [ref=e139]:
+          - generic [ref=e142]:
+            - heading "Contact Information" [level=3] [ref=e143]
+            - generic [ref=e144]:
+              - generic [ref=e145]:
+                - paragraph [ref=e146]: Address
+                - paragraph [ref=e147]: Kandanur, Karaikudi, Tamil Nadu
+              - generic [ref=e148]:
+                - paragraph [ref=e149]: Phone
+                - link "+91 70940 36158" [ref=e150] [cursor=pointer]:
+                  - /url: https://wa.me/917094036158
+              - generic [ref=e151]:
+                - paragraph [ref=e152]: Instagram
+                - link "@the_soundaryabridalmakeup" [ref=e153] [cursor=pointer]:
+                  - /url: https://www.instagram.com/the_soundaryabridalmakeup
+          - generic [ref=e154]:
+            - generic [ref=e155]: Your Message
+            - textbox "Tell us about your wedding date or bridal look..." [ref=e156]
+            - button "Send via WhatsApp" [ref=e157]
+  - contentinfo [ref=e161]:
+    - generic [ref=e162]:
+      - generic [ref=e163]:
+        - generic [ref=e164]:
+          - heading "Soundariya" [level=3] [ref=e165]
+          - paragraph [ref=e166]: Beauty Parlour
+        - paragraph [ref=e167]: Experience the pinnacle of luxury beauty and wellness. Our expert team is dedicated to enhancing your natural radiance through bespoke treatments.
+        - generic [ref=e168]:
+          - link [ref=e169] [cursor=pointer]:
+            - /url: "#"
+          - link [ref=e173] [cursor=pointer]:
+            - /url: "#"
+          - link [ref=e179] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e182]:
+        - heading "Quick Links" [level=4] [ref=e183]
+        - list [ref=e184]:
+          - listitem [ref=e185]:
+            - link "Home" [ref=e186] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e187]:
+            - link "About Us" [ref=e188] [cursor=pointer]:
+              - /url: "#about"
+          - listitem [ref=e189]:
+            - link "Services" [ref=e190] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e191]:
+            - link "Gallery" [ref=e192] [cursor=pointer]:
+              - /url: "#gallery"
+          - listitem [ref=e193]:
+            - link "Book Appointment" [ref=e194] [cursor=pointer]:
+              - /url: "#booking"
+      - generic [ref=e195]:
+        - heading "Contact" [level=4] [ref=e196]
+        - list [ref=e197]:
+          - listitem [ref=e198]:
+            - generic [ref=e202]: Kandanur, KaraikudiTamil Nadu
+          - listitem [ref=e203]:
+            - link "+91 70940 36158" [ref=e206] [cursor=pointer]:
+              - /url: https://wa.me/917094036158
+      - generic [ref=e207]:
+        - heading "Hours" [level=4] [ref=e208]
+        - list [ref=e209]:
+          - listitem [ref=e210]:
+            - generic [ref=e211]: Mon - Fri
+            - generic [ref=e212]: 10:00 AM - 8:00 PM
+          - listitem [ref=e213]:
+            - generic [ref=e214]: Saturday
+            - generic [ref=e215]: 10:00 AM - 9:00 PM
+          - listitem [ref=e216]:
+            - generic [ref=e217]: Sunday
+            - generic [ref=e218]: 11:00 AM - 6:00 PM
+    - generic [ref=e219]:
+      - paragraph [ref=e220]: © 2024 Soundariya Beauty Parlour. All Rights Reserved.
+      - generic [ref=e221]:
+        - link "Privacy Policy" [ref=e222] [cursor=pointer]:
+          - /url: "#"
+        - link "Terms of Service" [ref=e223] [cursor=pointer]:
+          - /url: "#"
