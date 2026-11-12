@@ -22,3 +22,27 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude artifacts
+.agents/
+.claude/
+
+# Playwright artifacts
+.playwright-cli/
+
+# Reports
+final_report.txt
+skills-lock.json
+
+# Reference images
+hero_1920.png
+landing_color.png
+landing_color.jpeg
+reference_landing.png
+reference_landing.jpeg
+
+# Review screenshots
+reviews-*.png
+
+# Verification screenshots
+verify-*.png
