@@ -69,7 +69,7 @@ const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-parlour-blush/60">
-        <p>© 2024 Soundariya Beauty Parlour. All Rights Reserved.</p>
+        <p>© 2026 Soundariya Beauty Parlour. All Rights Reserved.</p>
         <div className="flex space-x-6 mt-4 md:mt-0">
           <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
