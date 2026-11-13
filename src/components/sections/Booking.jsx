@@ -2,11 +2,46 @@ import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { CheckCircle, AlertCircle, Loader2, MapPin } from 'lucide-react';
-import { services } from '../../lib/services';
+import { services, serviceLabel } from '../../lib/services';
 import { useBooking } from '../../contexts/BookingContext';
 
 // Booking form only offers these four services.
 const BOOKABLE_SERVICES = ['makeup', 'bridal-makeup', 'hair-styling', 'saree-draping'];
+
+// Business WhatsApp number (digits only, no country prefix — wa.me requires this format).
+const WHATSAPP = '917094036158';
+
+// Normalize any Indian phone input to wa.me format: "91" + 10 local digits.
+// Strips spaces, parentheses, hyphens, dots, a leading "0", and a stray standalone "91".
+const normalizePhone = (raw) => {
+  let digits = (raw || '').replace(/\D/g, '');
+  if (digits.startsWith('0')) digits = digits.slice(1);
+  if (digits === '91') digits = '';
+  if (digits.startsWith('91') && digits.length > 10) digits = digits.slice(-10);
+  return `91${digits.slice(-10)}`;
+};
+
+// Build a professional, line-broken booking payload for the WhatsApp message.
+const buildBookingMessage = (data) => {
+  const serviceName = serviceLabel(data.service) || data.service;
+  const lines = [
+    'Soundariya Beauty Parlour — Booking Request',
+    `Name: ${data.name}`,
+    `Phone: ${data.phone}`,
+    `Email: ${data.email}`,
+    `Service: ${serviceName}`,
+    `Preferred Date: ${data.date}`,
+    `Preferred Time: ${data.time}`,
+  ];
+  if (data.message) lines.push(`Notes: ${data.message}`);
+  return encodeURIComponent(lines.join('\n'));
+};
+
+const pad = (n) => String(n).padStart(2, '0');
+const todayLocalStr = () => {
+  const t = new Date();
+  return `${t.getFullYear()}-${pad(t.getMonth() + 1)}-${pad(t.getDate())}`;
+};
 
 const Booking = () => {
   const { selectedService, setSelectedService, bookingRef } = useBooking();
@@ -23,7 +58,8 @@ const Booking = () => {
 
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(null);
+  const [waSent, setWaSent] = useState(false);
+  const [waSentName, setWaSentName] = useState('');
 
   const sectionRef = useRef(null);
   const formRef = useRef(null);
@@ -67,12 +103,14 @@ const Booking = () => {
       errs.email = 'Please enter a valid email address.';
     }
 
-    // 3. Phone (Indian mobile numbers: 10 digits starting with 6-9, optional +91 prefix)
-    const cleanPhone = formData.phone.replace(/[\s-]/g, '');
+    // 3. Phone — normalize first, then validate the 10-digit local number.
+    //    Fixes: double country-prefix acceptance, leading-zero rejection, and
+    //    parenthesised/spaced input that the old regex rejected.
+    const normalized = normalizePhone(formData.phone);
     if (!formData.phone.trim()) {
       errs.phone = 'Phone number is required.';
-    } else if (!/^(\+91)?(91)?[6-9]\d{9}$/.test(cleanPhone)) {
-      errs.phone = 'Please enter a valid 10-digit Indian phone number (e.g. 9876543210).';
+    } else if (!/^[6-9]\d{9}$/.test(normalized.slice(2))) {
+      errs.phone = 'Please enter a valid 10-digit Indian mobile number (e.g. 9876543210).';
     }
 
     // 4. Service
@@ -80,11 +118,13 @@ const Booking = () => {
       errs.service = 'Please select a service.';
     }
 
-    // 5. Date (cannot be past)
+    // 5. Date (cannot be past) — timezone-safe: compare date-only values, not UTC
+    //    midnight vs local midnight (which breaks for users west of UTC).
     if (!formData.date) {
       errs.date = 'Preferred date is required.';
     } else {
-      const selected = new Date(formData.date);
+      const [y, m, d] = formData.date.split('-').map(Number);
+      const selected = new Date(y, m - 1, d);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       if (selected < today) {
@@ -101,9 +141,10 @@ const Booking = () => {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitSuccess(null);
+    setWaSent(false);
+    setErrors({});
 
     if (!validate()) {
       return;
@@ -111,37 +152,33 @@ const Booking = () => {
 
     setIsSubmitting(true);
 
-    // Simulate Network/Processing state
+    // Brief visual confirmation while the WhatsApp tab opens.
     setTimeout(() => {
-      setIsSubmitting(false);
-      const matched = services.find((s) => s.key === formData.service);
-      const serviceName = matched ? matched.name : formData.service;
-
-      setSubmitSuccess({
-        name: formData.name,
-        service: serviceName,
-        date: formData.date,
-        time: formData.time,
-        email: formData.email,
-        phone: formData.phone,
+      const text = buildBookingMessage({
+        ...formData,
+        phone: normalizePhone(formData.phone),
       });
+      window.open(`https://wa.me/${WHATSAPP}?text=${text}`, '_blank', 'noopener,noreferrer');
 
-      // Clear form except selected service
-      setFormData({
+      setWaSentName(formData.name.trim());
+      setWaSent(true);
+      setIsSubmitting(false);
+
+      // Clear form fields except the selected service.
+      setFormData((prev) => ({
         name: '',
         email: '',
         phone: '',
-        service: '',
+        service: prev.service,
         date: '',
         time: '',
         message: '',
-      });
-      setSelectedService('');
+      }));
       setErrors({});
-    }, 1200);
+    }, 700);
   };
 
-  const todayStr = new Date().toISOString().split('T')[0];
+  const todayStr = todayLocalStr();
 
   return (
     <section
@@ -199,21 +236,30 @@ const Booking = () => {
                 Select your preferred service, date and time slot below.
               </p>
 
-              {/* Success Notification Box */}
-              {submitSuccess && (
-                <div className="mb-8 p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 flex items-start gap-4 animate-fade-in">
+              {/* WhatsApp confirmation notice — replaces the fake "booking logged" state.
+                  This only appears AFTER the WhatsApp tab has been opened with a
+                  pre-filled message containing every field the customer entered. */}
+              {waSent && (
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className="mb-8 p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 flex items-start gap-4 animate-fade-in"
+                >
                   <CheckCircle size={24} className="text-emerald-600 shrink-0 mt-0.5" />
                   <div className="space-y-2 text-xs sm:text-sm">
                     <h4 className="font-bold text-emerald-900 text-base">
-                      Appointment Request Received!
+                      WhatsApp message opened
                     </h4>
                     <p>
-                      Thank you, <strong>{submitSuccess.name}</strong>. We have logged your booking request for{' '}
-                      <strong>{submitSuccess.service}</strong> on <strong>{submitSuccess.date}</strong> at{' '}
-                      <strong>{submitSuccess.time}</strong>.
+                      Thank you, <strong>{waSentName}</strong>. A WhatsApp message has been opened to our team with
+                      your name, phone, email, service, preferred date and time. Please send it so we can confirm
+                      your appointment.
                     </p>
                     <p className="text-emerald-700 text-xs italic pt-1 border-t border-emerald-200/60">
-                      ℹ️ <strong>Demo Submission:</strong> Front-end preview complete. Real backend integration is required for live booking confirmation.
+                      Tip: if the tab didn't open, please allow pop-ups or send the message manually to{' '}
+                      <a href="https://wa.me/917094036158" target="_blank" rel="noopener noreferrer" className="underline font-medium">
+                        +91 70940 36158
+                      </a>.
                     </p>
                   </div>
                 </div>

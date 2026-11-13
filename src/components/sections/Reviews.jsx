@@ -341,10 +341,8 @@ const Reviews = () => {
             </div>
           </div>
 
-          {/* Demo notice */}
-          <p className="text-center text-[10px] tracking-[0.2em] uppercase text-parlour-brown/40 mt-8">
-            Sample reviews shown — replace with genuine customer testimonials.
-          </p>
+          
+          
         </div>
       </div>
     </section>
