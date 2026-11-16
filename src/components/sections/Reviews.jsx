@@ -1,348 +1,456 @@
-import React, { useRef, useEffect, useState, useCallback, useMemo } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { TESTIMONIALS } from '../../lib/reviews';
 
-// Sample review data - six genuine bridal testimonials
-const REVIEWS = [
-  {
-    id: 1,
-    name: 'Priya',
-    review: 'I felt absolutely beautiful on my wedding day. The makeup was elegant, natural and exactly how I imagined it.',
-    occasion: 'Bridal Makeup',
-  },
-  {
-    id: 2,
-    name: 'Ananya',
-    review: 'The entire bridal look came together so beautifully. Every detail was thoughtfully done.',
-    occasion: 'Traditional Bridal Makeup',
-  },
-  {
-    id: 3,
-    name: 'Divya',
-    review: 'I wanted a look that enhanced my natural features, and the final result was exactly what I hoped for.',
-    occasion: 'Bridal Makeup',
-  },
-  {
-    id: 4,
-    name: 'Keerthana',
-    review: 'My bridal look complemented my saree and jewellery perfectly. I loved the overall experience.',
-    occasion: 'South Indian Bridal Makeup',
-  },
-  {
-    id: 5,
-    name: 'Nandhini',
-    review: 'From the initial preparation to the final look, everything felt carefully planned and beautifully executed.',
-    occasion: 'Bridal Makeup',
-  },
-  {
-    id: 6,
-    name: 'Harini',
-    review: 'I felt confident, comfortable and special throughout my wedding day. Truly a memorable experience.',
-    occasion: 'Bridal Makeup',
-  },
-];
+const StarRating = ({ rating }) => (
+  <div className="flex gap-1 justify-center" role="img" aria-label={`${rating} out of 5 stars`}>
+    {[...Array(5)].map((_, i) => (
+      <Star
+        key={i}
+        size={14}
+        className={i < rating ? 'text-parlour-gold fill-current' : 'text-parlour-plum/20'}
+      />
+    ))}
+  </div>
+);
 
-const CONFIG = {
-  autoplayDelay: 3000,      // 3 seconds between advances
-  transitionDuration: 0.8,  // 0.8s transition
-  ease: 'power2.inOut',
-  cardsPerView: {
-    desktop: 3,
-    tablet: 2,
-    mobile: 1,
-  },
-  gap: 24, // gap-6 = 24px
-};
+// Double testimonials to 16 items for continuous looping
+const REEL_ITEMS = [...TESTIMONIALS, ...TESTIMONIALS].map((item, idx) => ({
+  ...item,
+  uniqueKey: `${item.id}-${idx}`,
+  originalIndex: idx % TESTIMONIALS.length,
+}));
 
+const TOTAL_CARDS = REEL_ITEMS.length;
+const ANGLE_STEP = (2 * Math.PI) / TOTAL_CARDS; // 22.5 deg per card
+
+/**
+ * Orbit Reel — ReactBits Pro Architecture
+ *
+ * Designed to strictly mirror the ReactBits Pro orbit-reel-tw layout:
+ * - Arc View: 5 cards sweeping across an arc with active card upright at apex.
+ * - Ring View: Circular turning wheel of cards.
+ * - Clean cards: No slopped badges or clutter, pure card aesthetic.
+ * - Under-card info: Title, subtitle/testimonial, and "< 01 / 08 >" stepper controls.
+ * - Color Palette: Aligned with the Soundariya site system (#fce4ec, #f3d4e0, #380b44).
+ */
 const Reviews = () => {
   const sectionRef = useRef(null);
-  const trackRef = useRef(null);
+  const stageRef = useRef(null);
 
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [cardWidth, setCardWidth] = useState(0);
+  // View mode: 'arc' or 'ring'
+  const [viewMode, setViewMode] = useState('arc');
 
-  // Position & animation refs to avoid unnecessary GSAP re-instantiations
-  const totalOriginal = REVIEWS.length;
-  const currentTrackIndexRef = useRef(totalOriginal); // Start at middle set
-  const isAnimatingRef = useRef(false);
-  const isHoveringRef = useRef(false);
+  // Rotation state in radians
+  const [rotation, setRotation] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const targetRotationRef = useRef(0);
+  const currentRotationRef = useRef(0);
+  const isDraggingRef = useRef(false);
+  const dragStartXRef = useRef(0);
+  const dragStartRotRef = useRef(0);
+  const isHoveredRef = useRef(false);
+  const animFrameRef = useRef(null);
 
-  // Detect reduced motion preference
+  // Active index (0 to 7)
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Reduced motion preference
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return false;
+  });
+
+  // Responsive dimensions
+  const [viewportWidth, setViewportWidth] = useState(() => {
+    if (typeof window !== 'undefined') return window.innerWidth;
+    return 1024;
+  });
+
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
-    const handler = (e) => setPrefersReducedMotion(e.matches);
-    mediaQuery.addEventListener?.('change', handler);
-    return () => mediaQuery.removeEventListener?.('change', handler);
+    const handleResize = () => setViewportWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Calculate card width based on parent container width
   useEffect(() => {
-    const updateCardWidth = () => {
-      if (!trackRef.current || !trackRef.current.parentElement) return;
-      const containerWidth = trackRef.current.parentElement.offsetWidth;
-      let cardsVisible = CONFIG.cardsPerView.mobile;
+    const mq = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    if (!mq) return;
+    const handler = (e) => setPrefersReducedMotion(e.matches);
+    mq.addEventListener?.('change', handler);
+    return () => mq.removeEventListener?.('change', handler);
+  }, []);
 
-      if (containerWidth >= 1024) cardsVisible = CONFIG.cardsPerView.desktop;
-      else if (containerWidth >= 768) cardsVisible = CONFIG.cardsPerView.tablet;
+  const isMobile = viewportWidth < 768;
+  const isTablet = viewportWidth >= 768 && viewportWidth < 1024;
 
-      const calculatedWidth = (containerWidth - CONFIG.gap * (cardsVisible - 1)) / cardsVisible;
-      setCardWidth(calculatedWidth);
+  // Exact ReactBits card aspect ratio ~0.8
+  const cardDims = useMemo(() => {
+    if (isMobile) return { width: 140, height: 175 };
+    if (isTablet) return { width: 175, height: 220 };
+    return { width: 210, height: 265 };
+  }, [isMobile, isTablet]);
+
+  const arcRadius = useMemo(() => {
+    if (isMobile) return 290;
+    if (isTablet) return 400;
+    return 520;
+  }, [isMobile, isTablet]);
+
+  const ringRadius = useMemo(() => {
+    if (isMobile) return 190;
+    if (isTablet) return 280;
+    return 370;
+  }, [isMobile, isTablet]);
+
+  // Smooth lerp loop via requestAnimationFrame
+  useEffect(() => {
+    let lastTime = performance.now();
+
+    const loop = (time) => {
+      const dt = Math.min((time - lastTime) / 1000, 0.1);
+      lastTime = time;
+
+      // In Ring view, gentle continuous spin
+      if (viewMode === 'ring' && !isDraggingRef.current && !isHoveredRef.current && !prefersReducedMotion) {
+        targetRotationRef.current += 0.12 * dt;
+      }
+
+      // Smooth interpolation to target
+      const diff = targetRotationRef.current - currentRotationRef.current;
+      currentRotationRef.current += diff * Math.min(dt * 8.5, 1);
+      setRotation(currentRotationRef.current);
+
+      // Determine active card at apex
+      const normalized = ((currentRotationRef.current % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      const closestSlot = Math.round(normalized / ANGLE_STEP) % TOTAL_CARDS;
+      const originalIdx = REEL_ITEMS[closestSlot]?.originalIndex ?? 0;
+      if (originalIdx !== activeIndex) {
+        setActiveIndex(originalIdx);
+      }
+
+      animFrameRef.current = requestAnimationFrame(loop);
     };
 
-    updateCardWidth();
-    window.addEventListener('resize', updateCardWidth);
-    return () => window.removeEventListener('resize', updateCardWidth);
+    animFrameRef.current = requestAnimationFrame(loop);
+    return () => {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    };
+  }, [viewMode, activeIndex, prefersReducedMotion]);
+
+  // Autoplay in Arc view (every 4s)
+  useEffect(() => {
+    if (viewMode !== 'arc' || prefersReducedMotion) return;
+
+    const interval = setInterval(() => {
+      if (!isHoveredRef.current && !isDraggingRef.current) {
+        targetRotationRef.current += ANGLE_STEP;
+      }
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [viewMode, prefersReducedMotion]);
+
+  // Step controls
+  const handlePrev = useCallback(() => {
+    targetRotationRef.current -= ANGLE_STEP;
   }, []);
 
-  // Tripled reviews for infinite seamless scrolling
-  const duplicatedReviews = useMemo(
-    () => [...REVIEWS, ...REVIEWS, ...REVIEWS],
-    []
-  );
-
-  // Reveal cards (override App.jsx global set) and set initial track x position
-  useGSAP(() => {
-    if (!trackRef.current) return;
-
-    // Fix root cause: reveal .card-luxury elements hidden by App.jsx mount animation
-    const cards = trackRef.current.querySelectorAll('.card-luxury');
-    gsap.set(cards, { opacity: 1, y: 0, clearProps: 'opacity,y' });
-
-    if (cardWidth > 0) {
-      const initialX = -(currentTrackIndexRef.current * (cardWidth + CONFIG.gap));
-      gsap.set(trackRef.current, { x: initialX });
-    }
-  }, { scope: sectionRef, dependencies: [cardWidth] });
-
-  // Carousel advance function
-  const advance = useCallback((direction = 1) => {
-    if (isAnimatingRef.current || !trackRef.current || cardWidth <= 0) return;
-    isAnimatingRef.current = true;
-
-    const moveDistance = (cardWidth + CONFIG.gap) * direction;
-    const currentX = gsap.getProperty(trackRef.current, 'x');
-    const targetX = currentX - moveDistance;
-
-    gsap.to(trackRef.current, {
-      x: targetX,
-      duration: CONFIG.transitionDuration,
-      ease: CONFIG.ease,
-      onComplete: () => {
-        currentTrackIndexRef.current += direction;
-        isAnimatingRef.current = false;
-
-        // Infinite loop wrap check
-        if (currentTrackIndexRef.current >= totalOriginal * 2) {
-          currentTrackIndexRef.current -= totalOriginal;
-          const newX = -(currentTrackIndexRef.current * (cardWidth + CONFIG.gap));
-          gsap.set(trackRef.current, { x: newX });
-        } else if (currentTrackIndexRef.current < totalOriginal) {
-          currentTrackIndexRef.current += totalOriginal;
-          const newX = -(currentTrackIndexRef.current * (cardWidth + CONFIG.gap));
-          gsap.set(trackRef.current, { x: newX });
-        }
-
-        const displayIndex = ((currentTrackIndexRef.current - totalOriginal) % totalOriginal + totalOriginal) % totalOriginal;
-        setCurrentIndex(displayIndex);
-      },
-    });
-  }, [cardWidth, totalOriginal]);
-
-  // Jump to specific review index (e.g. via indicators)
-  const goToIndex = useCallback((targetIndex) => {
-    if (isAnimatingRef.current || !trackRef.current || cardWidth <= 0) return;
-    isAnimatingRef.current = true;
-
-    const targetTrackIndex = totalOriginal + targetIndex;
-    const targetX = -(targetTrackIndex * (cardWidth + CONFIG.gap));
-
-    gsap.to(trackRef.current, {
-      x: targetX,
-      duration: CONFIG.transitionDuration,
-      ease: CONFIG.ease,
-      onComplete: () => {
-        currentTrackIndexRef.current = targetTrackIndex;
-        isAnimatingRef.current = false;
-        setCurrentIndex(targetIndex);
-      },
-    });
-  }, [cardWidth, totalOriginal]);
-
-  // Autoplay timer
-  useEffect(() => {
-    if (prefersReducedMotion || cardWidth <= 0) return;
-
-    const timer = setInterval(() => {
-      if (!isHoveringRef.current) {
-        advance(1);
-      }
-    }, CONFIG.autoplayDelay);
-
-    return () => clearInterval(timer);
-  }, [advance, prefersReducedMotion, cardWidth]);
-
   const handleNext = useCallback(() => {
-    advance(1);
-  }, [advance]);
+    targetRotationRef.current += ANGLE_STEP;
+  }, []);
 
-  const handlePrev = useCallback(() => {
-    advance(-1);
-  }, [advance]);
+  const navigateToCard = useCallback((cardIndex) => {
+    const targetAngle = cardIndex * ANGLE_STEP;
+    const current = currentRotationRef.current;
+    const diff = targetAngle - (current % (2 * Math.PI));
+    const adjusted = Math.atan2(Math.sin(diff), Math.cos(diff));
+    targetRotationRef.current = current + adjusted;
+  }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        handlePrev();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        handleNext();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handlePrev, handleNext]);
+
+  // Pointer drag controls
+  const handlePointerDown = (e) => {
+    isDraggingRef.current = true;
+    setIsDragging(true);
+    dragStartXRef.current = e.clientX;
+    dragStartRotRef.current = targetRotationRef.current;
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      // ignore
+    }
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDraggingRef.current) return;
+    const deltaX = e.clientX - dragStartXRef.current;
+    const sensitivity = isMobile ? 0.005 : 0.0035;
+    targetRotationRef.current = dragStartRotRef.current - deltaX * sensitivity;
+  };
+
+  const handlePointerUp = (e) => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+    setIsDragging(false);
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {
+      // ignore
+    }
+    const nearest = Math.round(targetRotationRef.current / ANGLE_STEP) * ANGLE_STEP;
+    targetRotationRef.current = nearest;
+  };
+
+  const handleCardClick = (cardIndex) => {
+    navigateToCard(cardIndex);
+    if (viewMode === 'ring') {
+      setViewMode('arc');
+    }
+  };
+
+  const activeTestimonial = TESTIMONIALS[activeIndex] || TESTIMONIALS[0];
+  const activeNumberStr = String(activeIndex + 1).padStart(2, '0');
+  const totalNumberStr = String(TESTIMONIALS.length).padStart(2, '0');
 
   return (
     <section
       ref={sectionRef}
       id="reviews"
-      className="py-24 px-6 relative overflow-hidden bg-parlour-cream"
-      onMouseEnter={() => { isHoveringRef.current = true; }}
-      onMouseLeave={() => { isHoveringRef.current = false; }}
+      className="py-24 px-4 sm:px-6 relative overflow-hidden select-none"
+      style={{ background: 'linear-gradient(135deg, #fce4ec 0%, #f3d4e0 50%, #fce4ec 100%)' }}
+      aria-label="Client Testimonials Reel"
+      onMouseEnter={() => { isHoveredRef.current = true; }}
+      onMouseLeave={() => { isHoveredRef.current = false; }}
     >
-      {/* Background accents */}
-      <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(212,175,55,0.08)' }} />
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(212,175,55,0.08)' }} />
+      {/* Background ambient lighting matching the site palette */}
+      <div
+        className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none"
+        style={{ background: 'rgba(218,158,210,0.35)' }}
+      />
+      <div
+        className="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-2xl pointer-events-none"
+        style={{ background: 'rgba(225,161,213,0.4)' }}
+      />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block text-[11px] tracking-[0.3em] uppercase text-parlour-gold font-medium mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <span className="inline-block text-[11px] tracking-[0.3em] uppercase text-parlour-plum/70 font-medium mb-3">
             WORDS FROM OUR BRIDES
           </span>
           <h2
-            className="text-4xl md:text-6xl text-parlour-espresso mb-6 leading-tight"
-            style={{ fontFamily: 'var(--font-serif)' }}
+            className="text-3xl md:text-5xl lg:text-6xl text-parlour-plum mb-4 font-display uppercase tracking-tight"
           >
-            Love, in Their Words.
+            Love, In Their Words.
           </h2>
-          <p className="text-lg md:text-xl text-parlour-brown/70 leading-relaxed max-w-3xl mx-auto" style={{ fontFamily: 'var(--font-sans)' }}>
-            Every bridal look has a story. Here&apos;s what our brides have to say about their experience with Soundariya.
+          <p className="text-sm md:text-base text-parlour-plum/80 max-w-xl mx-auto font-sans leading-relaxed">
+            Every bridal look has a story. Slide through our real brides and their unforgettable experiences.
           </p>
+
+          {/* Minimal View Toggle (Arc / Ring) */}
+          <div className="mt-5 flex items-center justify-center">
+            <div className="inline-flex p-1 rounded-full bg-white/70 backdrop-blur-md border border-parlour-plum/15 shadow-sm">
+              <button
+                type="button"
+                onClick={() => setViewMode('arc')}
+                className={`px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all duration-300 ${
+                  viewMode === 'arc'
+                    ? 'bg-parlour-plum text-parlour-blush shadow-xs'
+                    : 'text-parlour-plum/70 hover:text-parlour-plum'
+                }`}
+                aria-pressed={viewMode === 'arc'}
+              >
+                Arc View
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('ring')}
+                className={`px-4 py-1.5 rounded-full text-xs font-medium tracking-wider uppercase transition-all duration-300 ${
+                  viewMode === 'ring'
+                    ? 'bg-parlour-plum text-parlour-blush shadow-xs'
+                    : 'text-parlour-plum/70 hover:text-parlour-plum'
+                }`}
+                aria-pressed={viewMode === 'ring'}
+              >
+                Ring View
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Carousel */}
-        <div className="relative" role="region" aria-label="Customer reviews carousel">
-          {/* Track container */}
-          <div className="overflow-hidden pb-6">
-            <div
-              ref={trackRef}
-              className="flex gap-6 transition-transform duration-0"
-              role="list"
-              aria-live="polite"
-            >
-              {duplicatedReviews.map((review, idx) => (
-                <article
-                  key={`${review.id}-${idx}`}
-                  className="flex-shrink-0 relative"
+        {/* ══════════════════════════════════════════════════════════════ */}
+        {/*  ORBIT REEL STAGE (REACTBITS PRO ARC / RING)                   */}
+        {/* ══════════════════════════════════════════════════════════════ */}
+        <div
+          ref={stageRef}
+          className={`
+            relative mx-auto w-full cursor-grab active:cursor-grabbing touch-none
+            ${viewMode === 'arc'
+              ? 'h-[230px] sm:h-[300px] md:h-[340px] overflow-visible'
+              : 'h-[400px] sm:h-[480px] md:h-[540px] overflow-hidden'
+            }
+          `}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          role="region"
+          aria-label="Interactive bridal cards reel"
+        >
+          <div className="absolute inset-0 flex items-center justify-center">
+            {REEL_ITEMS.map((item, index) => {
+              const itemAngle = index * ANGLE_STEP;
+              let diff = (itemAngle - rotation) % (2 * Math.PI);
+              if (diff > Math.PI) diff -= 2 * Math.PI;
+              if (diff < -Math.PI) diff += 2 * Math.PI;
+
+              const distFromApex = Math.abs(diff);
+              const isApex = distFromApex < ANGLE_STEP * 0.55;
+
+              let x = 0;
+              let y = 0;
+              let rotZ = 0;
+              let scale = 1;
+              let opacity = 1;
+              let zIndex = Math.round(100 - distFromApex * 20);
+
+              if (viewMode === 'arc') {
+                // ARC VIEW: Exactly 5 cards visible across the arc, identical to ReactBits
+                if (distFromApex > ANGLE_STEP * 2.15) return null;
+
+                x = Math.sin(diff) * arcRadius;
+                y = (1 - Math.cos(diff)) * (arcRadius * 0.72) - 20;
+                rotZ = diff * (180 / Math.PI) * 0.85;
+                scale = Math.max(0.75, 1 - distFromApex * 0.16);
+                opacity = Math.max(0.4, 1 - Math.pow(distFromApex / (ANGLE_STEP * 2.15), 1.6) * 0.55);
+              } else {
+                // RING VIEW: Circular ring matching ReactBits ring view
+                const alpha = itemAngle - rotation;
+                x = Math.sin(alpha) * ringRadius;
+                y = -Math.cos(alpha) * ringRadius;
+                rotZ = (alpha * 180) / Math.PI;
+                scale = Math.max(0.75, 0.92);
+                opacity = Math.max(0.4, 1 - (1 - Math.cos(diff)) * 0.35);
+                zIndex = Math.round(50 + y);
+              }
+
+              // Discard fully out-of-frame cards
+              if (opacity <= 0.02) return null;
+
+              return (
+                <div
+                  key={item.uniqueKey}
+                  onClick={() => handleCardClick(index)}
+                  className={`
+                    absolute left-1/2 top-1/2 rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer
+                    transition-[box-shadow,border-color] duration-300
+                    ${isApex && viewMode === 'arc'
+                      ? 'border-2 border-parlour-plum shadow-2xl'
+                      : 'border border-parlour-plum/15 shadow-lg hover:border-parlour-plum/40'
+                    }
+                  `}
                   style={{
-                    width: cardWidth > 0 ? `${cardWidth}px` : 'calc((100% - 48px) / 3)',
-                    minWidth: cardWidth > 0 ? `${cardWidth}px` : 'calc((100% - 48px) / 3)',
+                    width: `${cardDims.width}px`,
+                    height: `${cardDims.height}px`,
+                    transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${rotZ}deg) scale(${scale})`,
+                    zIndex,
+                    opacity,
+                    transition: isDragging ? 'none' : 'transform 0.16s ease-out, opacity 0.2s ease-out',
                   }}
-                  role="listitem"
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`${item.name} — ${item.service}`}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleCardClick(index);
+                    }
+                  }}
                 >
-                  <div className="card-luxury p-6 md:p-8 h-full flex flex-col justify-between bg-white/95 backdrop-blur-sm border border-parlour-plum/10 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                    <div>
-                      {/* Decorative quotation mark */}
-                      <div className="text-parlour-gold font-serif text-5xl leading-none select-none mb-2" aria-hidden="true">
-                        &ldquo;
-                      </div>
+                  {/* Clean Card Portrait Image — No slopped badges */}
+                  <img
+                    src={item.photo}
+                    alt={item.name}
+                    className="w-full h-full object-cover pointer-events-none"
+                    loading="lazy"
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
-                      {/* Stars */}
-                      <div className="flex gap-1 mb-4" aria-hidden="true">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} size={16} className="text-parlour-gold fill-current" />
-                        ))}
-                      </div>
-
-                      {/* Review text */}
-                      <blockquote className="text-parlour-espresso leading-relaxed text-base md:text-lg mb-6" style={{ fontFamily: 'var(--font-sans)' }}>
-                        {review.review}
-                      </blockquote>
-                    </div>
-
-                    {/* Author info */}
-                    <div className="flex items-center gap-3 pt-4 border-t border-parlour-plum/10 mt-auto">
-                      <div className="w-10 h-10 rounded-full bg-parlour-blush flex items-center justify-center flex-shrink-0 border border-parlour-plum/10">
-                        <span className="text-parlour-plum font-semibold text-sm" style={{ fontFamily: 'var(--font-serif)' }}>
-                          {review.name.charAt(0)}
-                        </span>
-                      </div>
-                      <div>
-                        <p className="text-parlour-espresso font-semibold text-base" style={{ fontFamily: 'var(--font-serif)' }}>
-                          {review.name}
-                        </p>
-                        <p className="text-parlour-brown/70 text-xs tracking-wider uppercase" style={{ fontFamily: 'var(--font-sans)' }}>
-                          {review.occasion}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+        {/* ══════════════════════════════════════════════════════════════ */}
+        {/*  CENTER TESTIMONIAL & REACTBITS STEPPER CONTROLS              */}
+        {/* ══════════════════════════════════════════════════════════════ */}
+        <div
+          className="mt-6 md:mt-10 text-center max-w-xl mx-auto px-4"
+          role="article"
+          aria-live="polite"
+        >
+          {/* Star Rating */}
+          <div className="mb-2">
+            <StarRating rating={activeTestimonial.rating} />
           </div>
 
-          {/* Navigation Controls - Desktop/Tablet */}
-          <div className="hidden md:flex absolute top-1/2 left-0 right-0 -translate-y-1/2 px-2 pointer-events-none z-20 justify-between">
+          {/* Title (Bride's Name) */}
+          <h3 className="text-xl md:text-2xl font-display uppercase tracking-wide text-parlour-plum mb-1">
+            {activeTestimonial.name}
+          </h3>
+
+          {/* Subtitle (Service & Location) */}
+          <p className="text-xs uppercase tracking-widest text-parlour-plum/70 font-medium mb-3">
+            {activeTestimonial.service} &bull; {activeTestimonial.location}
+          </p>
+
+          {/* Testimonial Quote */}
+          <blockquote
+            className="text-sm md:text-base text-parlour-plum/85 italic leading-relaxed mb-6 font-sans"
+          >
+            &ldquo;{activeTestimonial.review}&rdquo;
+          </blockquote>
+
+          {/* ReactBits Stepper Bar: < 01 / 08 > */}
+          <div className="inline-flex items-center gap-3">
             <button
+              type="button"
               onClick={handlePrev}
-              className="pointer-events-auto -ml-5 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-parlour-gold/30 text-parlour-espresso flex items-center justify-center shadow-lg hover:bg-parlour-gold/10 hover:border-parlour-gold/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-parlour-gold/50"
-              aria-label="Previous review"
-              type="button"
+              className="w-8 h-8 rounded-full bg-parlour-plum/10 text-parlour-plum hover:bg-parlour-plum hover:text-white flex items-center justify-center transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-parlour-plum/40"
+              aria-label="Previous story"
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={16} />
             </button>
+
+            <span className="text-xs font-mono tracking-widest font-semibold text-parlour-plum/80 px-2 min-w-[60px]">
+              {activeNumberStr} / {totalNumberStr}
+            </span>
+
             <button
-              onClick={handleNext}
-              className="pointer-events-auto -mr-5 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-parlour-gold/30 text-parlour-espresso flex items-center justify-center shadow-lg hover:bg-parlour-gold/10 hover:border-parlour-gold/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-parlour-gold/50"
-              aria-label="Next review"
               type="button"
+              onClick={handleNext}
+              className="w-8 h-8 rounded-full bg-parlour-plum/10 text-parlour-plum hover:bg-parlour-plum hover:text-white flex items-center justify-center transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-parlour-plum/40"
+              aria-label="Next story"
             >
-              <ChevronRight size={20} />
+              <ChevronRight size={16} />
             </button>
           </div>
-
-          {/* Mobile Navigation & Indicators */}
-          <div className="md:hidden flex flex-col items-center gap-4 mt-6">
-            <div className="flex gap-3">
-              <button
-                onClick={handlePrev}
-                className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-parlour-gold/30 text-parlour-espresso flex items-center justify-center shadow-lg active:scale-95 transition-transform focus:outline-none focus:ring-2 focus:ring-parlour-gold/50"
-                aria-label="Previous review"
-                type="button"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button
-                onClick={handleNext}
-                className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-parlour-gold/30 text-parlour-espresso flex items-center justify-center shadow-lg active:scale-95 transition-transform focus:outline-none focus:ring-2 focus:ring-parlour-gold/50"
-                aria-label="Next review"
-                type="button"
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-            {/* Indicator dots */}
-            <div className="flex gap-2" role="tablist" aria-label="Review indicators">
-              {REVIEWS.map((_, i) => (
-                <button
-                  key={i}
-                  className={`h-2.5 rounded-full transition-all duration-300 ${
-                    i === currentIndex ? 'bg-parlour-gold w-6' : 'bg-parlour-gold/30 w-2.5 hover:bg-parlour-gold/50'
-                  }`}
-                  onClick={() => goToIndex(i)}
-                  role="tab"
-                  aria-selected={i === currentIndex}
-                  aria-label={`Go to review ${i + 1}`}
-                  type="button"
-                />
-              ))}
-            </div>
-          </div>
-
-          
-          
         </div>
       </div>
     </section>

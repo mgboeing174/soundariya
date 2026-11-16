@@ -494,7 +494,6 @@ const Booking = () => {
                     onClick={() => {
                       setFormData({ name: '', email: '', phone: '', service: '', date: '', time: '', message: '' });
                       setErrors({});
-                      setSubmitSuccess(null);
                     }}
                     className="btn-luxury-outline rounded-xl px-8 py-4 font-bold text-xs tracking-[0.2em] hover:bg-parlour-plum/5"
                   >
