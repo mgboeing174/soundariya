@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { BookingProvider, useBooking } from './contexts/BookingContext';
 import Footer from './components/layout/Footer';
+import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Services from './components/sections/Services';
@@ -30,6 +31,7 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-parlour-blush text-parlour-plum selection:bg-parlour-lavender selection:text-parlour-plum">
       <main>
+        <Navbar />
         <Hero />
         <About />
         <Services />

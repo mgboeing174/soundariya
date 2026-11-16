@@ -40,10 +40,10 @@ const Gallery = () => {
       ref={containerRef}
       id="gallery"
       className="py-28 px-6 relative overflow-hidden"
-      style={{ background: 'linear-gradient(to bottom, #f3d4e0, #fce4ec)' }}
+      style={{ background: 'linear-gradient(to bottom, #D997C9, #E7B0DE)' }}
     >
-      <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(218,158,210,0.35)' }} />
-      <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full blur-2xl pointer-events-none" style={{ background: 'rgba(225,161,213,0.4)' }} />
+      <div className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(231,176,222,0.45)' }} />
+      <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full blur-2xl pointer-events-none" style={{ background: 'rgba(217,151,201,0.5)' }} />
 
       <div className="max-w-4xl mx-auto relative z-10">
         <div ref={galleryRef} className="text-center mb-12">

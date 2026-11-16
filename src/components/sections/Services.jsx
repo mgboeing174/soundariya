@@ -25,7 +25,7 @@ const Services = () => {
     <section
       ref={containerRef}
       id="services"
-      className="py-28 px-6 relative overflow-hidden bg-parlour-cream"
+      className="py-28 px-6 relative overflow-hidden bg-parlour-blush"
     >
       <div className="max-w-3xl mx-auto relative z-10 text-center" ref={contentRef}>
         <span className="inline-block text-[11px] tracking-[0.3em] uppercase text-parlour-accent font-medium mb-4">
@@ -39,7 +39,7 @@ const Services = () => {
         </h2>
         <div className="text-lg md:text-xl text-parlour-brown/80 leading-relaxed font-light mb-10 space-y-6" style={{ fontFamily: 'var(--font-sans)' }}>
           <p>
-            Every bride deserves to feel extraordinary on her special day. At Soundariya, bridal makeup is thoughtfully crafted to enhance your natural beauty while complementing your personality, traditions and bridal attire.
+            Every bride deserves to feel extraordinary on her special day. At Soundarya, bridal makeup is thoughtfully crafted to enhance your natural beauty while complementing your personality, traditions and bridal attire.
           </p>
           <p>
             From refined elegance to timeless traditional looks, every detail is carefully considered to make your wedding moments unforgettable.

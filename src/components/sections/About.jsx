@@ -78,10 +78,10 @@ const About = () => {
       ref={aboutRef}
       id="about"
       className="py-24 px-6 relative overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #fce4ec 0%, #f3d4e0 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #E7B0DE 0%, #D997C9 100%)' }}
     >
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: 'rgba(218,158,210,0.35)' }} />
-      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-2xl" style={{ background: 'rgba(225,161,213,0.4)' }} />
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl" style={{ background: 'rgba(231,176,222,0.45)' }} />
+      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-2xl" style={{ background: 'rgba(217,151,201,0.5)' }} />
 
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16 items-center relative z-10 px-6">
         <div ref={textRef} className="space-y-6 order-2 md:order-1">
@@ -89,7 +89,7 @@ const About = () => {
             A Haven of Serenity
           </h2>
           <p className="text-parlour-plum/80 leading-relaxed text-sm md:text-base">
-            At Soundariya Beauty Parlour, we believe that true beauty is an expression of inner peace and personal care. Nestled in the heart of the city, our parlour offers a sanctuary where modern expertise meets timeless traditions.
+            At Soundarya Beauty Parlour, we believe that true beauty is an expression of inner peace and personal care. Nestled in the heart of the city, our parlour offers a sanctuary where modern expertise meets timeless traditions.
           </p>
           <p className="text-parlour-plum/80 leading-relaxed text-sm md:text-base">
             Our team of dedicated professionals uses only the finest, carefully curated products to ensure every service leaves you feeling rejuvenated, confident, and celebrated.
@@ -114,7 +114,7 @@ const About = () => {
           <div className="absolute inset-0 z-10 rounded-2xl" style={{ background: 'linear-gradient(135deg, rgba(56,11,68,0.18), rgba(218,158,210,0.12))' }} />
           <img
             src="/assets/images/about-interior.jpg"
-            alt="Soundariya Beauty Parlour Interior"
+            alt="Soundarya Beauty Parlour Interior"
             className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
             loading="lazy"
           />

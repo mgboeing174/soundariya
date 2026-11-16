@@ -74,30 +74,9 @@ const Hero = () => {
       className="relative h-screen w-full overflow-hidden"
       style={{
         background:
-          'linear-gradient(135deg, #dea2d8 0%, #e1a1d5 45%, #da9ed2 100%)',
+          'linear-gradient(135deg, #E7B0DE 0%, #D997C9 50%, #E7B0DE 100%)',
       }}
     >
-      {/* Top nav bar — matches reference layout exactly */}
-      <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-6 md:px-12 py-5">
-        <a href="#" className="flex flex-col md:hidden">
-          <span className="text-xl font-display tracking-wider uppercase font-bold" style={{ color: '#380b44' }}>
-            Soundariya
-          </span>
-        </a>
-        <nav className="hidden md:flex items-center space-x-10">
-          {['ABOUT', 'SERVICES', 'GALLERY', 'BOOKING', 'CONTACT'].map((label) => (
-            <a
-              key={label}
-              href={`#${label.toLowerCase()}`}
-              className="text-xs tracking-[0.2em] transition-opacity hover:opacity-70 font-medium"
-              style={{ color: '#380b44' }}
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-      </div>
-
       {/* Hero content: full-width headline + centered model overlaid on top, matching reference layout */}
       <div className="relative z-10 w-full h-full">
         {/* Tagline — left-aligned, above headline like the reference */}
@@ -122,7 +101,7 @@ const Hero = () => {
               wordBreak: 'safe',
             }}
           >
-            <span className="hero-word">SOUNDARIYA</span>
+            <span className="hero-word">SOUNDARYA</span>
           </h1>
         </div>
 

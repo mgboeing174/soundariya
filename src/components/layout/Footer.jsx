@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="space-y-6">
           <div>
             <h3 className="text-2xl font-display tracking-wider uppercase font-bold text-white">
-              Soundariya
+              Soundarya
             </h3>
             <p className="text-[10px] tracking-[0.3em] uppercase text-parlour-lavender">
               Beauty Parlour
@@ -69,7 +69,7 @@ const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-parlour-blush/60">
-        <p>© 2026 Soundariya Beauty Parlour. All Rights Reserved.</p>
+        <p>© 2026 Soundarya Beauty Parlour. All Rights Reserved.</p>
         <div className="flex space-x-6 mt-4 md:mt-0">
           <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-white transition-colors">Terms of Service</a>

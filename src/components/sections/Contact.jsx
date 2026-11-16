@@ -70,10 +70,10 @@ const Contact = () => {
       ref={contactRef}
       id="contact"
       className="py-24 px-6 relative overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #f3d4e0 0%, #fce4ec 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #D997C9 0%, #E7B0DE 100%)' }}
     >
-      <div className="absolute top-0 left-0 w-80 h-80 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(218,158,210,0.35)' }} />
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(225,161,213,0.4)' }} />
+      <div className="absolute top-0 left-0 w-80 h-80 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(231,176,222,0.45)' }} />
+      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: 'rgba(217,151,201,0.5)' }} />
 
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-14">
@@ -91,7 +91,7 @@ const Contact = () => {
             className="map-card relative rounded-2xl overflow-hidden shadow-lg w-full lg:w-[520px] h-[390px] flex-shrink-0"
           >
             <iframe
-              title="Soundariya Beauty Parlour — Kandanur, Karaikudi"
+              title="Soundarya Beauty Parlour — Kandanur, Karaikudi"
               src={MAP_SRC}
               className="absolute inset-0 w-full h-full border-0"
               allowFullScreen=""
@@ -100,7 +100,7 @@ const Contact = () => {
             ></iframe>
             <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(135deg, rgba(56,11,68,0.12), transparent)' }} />
             <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-lg border border-parlour-plum/10">
-              <p className="text-parlour-plum font-bold text-sm">Soundariya Beauty Parlour</p>
+              <p className="text-parlour-plum font-bold text-sm">Soundarya Beauty Parlour</p>
               <p className="text-parlour-plum/70 text-xs">Kandanur, Karaikudi, Tamil Nadu</p>
             </div>
           </div>
@@ -153,7 +153,7 @@ const Contact = () => {
                 onChange={(e) => setMessage(e.target.value)}
                 rows={4}
                 placeholder="Tell us about your wedding date or bridal look..."
-                className="w-full rounded-xl border border-parlour-plum/15 bg-parlour-blush/40 px-4 py-3 text-parlour-plum text-sm focus:outline-none focus:ring-2 focus:ring-parlour-lavender resize-none"
+                className="w-full rounded-xl border border-parlour-plum/15 bg-white/50 px-4 py-3 text-parlour-plum text-sm focus:outline-none focus:ring-2 focus:ring-parlour-lavender resize-none"
               />
               <button
                 type="submit"

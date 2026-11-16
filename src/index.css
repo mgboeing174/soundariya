@@ -20,8 +20,9 @@
   --color-parlour-lavender-end: #da9ed2;
   --color-parlour-plum: #380b44;
   --color-parlour-plum-deep: #2a0730;
-  --color-parlour-blush: #fce4ec;
-  --color-parlour-blush-deep: #f3d4e0;
+  /* Primary site background: #E7B0DE (luxury bridal blush-lavender) */
+  --color-parlour-blush: #E7B0DE;
+  --color-parlour-blush-deep: #D997C9;
 
   --font-serif: "Playfair Display", Georgia, serif;
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
@@ -29,7 +30,7 @@
 }
 
 :root {
-  background-color: #fce4ec;
+  background-color: #E7B0DE;
   color: #380b44;
   color-scheme: light;
 }
@@ -43,7 +44,7 @@
   body {
     margin: 0;
     font-family: var(--font-sans);
-    background-color: #fce4ec;
+    background-color: #E7B0DE;
     color: #380b44;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;

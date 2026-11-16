@@ -25,7 +25,7 @@ const normalizePhone = (raw) => {
 const buildBookingMessage = (data) => {
   const serviceName = serviceLabel(data.service) || data.service;
   const lines = [
-    'Soundariya Beauty Parlour — Booking Request',
+    'Soundarya Beauty Parlour — Booking Request',
     `Name: ${data.name}`,
     `Phone: ${data.phone}`,
     `Email: ${data.email}`,
@@ -185,16 +185,16 @@ const Booking = () => {
       ref={bookingRef}
       id="booking"
       className="py-28 px-6 relative overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #fce4ec 0%, #f3d4e0 100%)' }}
+      style={{ background: 'linear-gradient(180deg, #E7B0DE 0%, #D997C9 100%)' }}
     >
       <div ref={sectionRef} className="max-w-6xl mx-auto relative z-10">
-        <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-parlour-plum/10 flex flex-col lg:flex-row">
+        <div className="bg-parlour-blush/80 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl border border-parlour-plum/10 flex flex-col lg:flex-row">
 
           {/* Left Panel: Visual & Brand Image */}
           <div className="lg:w-5/12 relative min-h-[320px] lg:min-h-full flex flex-col justify-end p-8 md:p-12 text-white overflow-hidden">
             <img
               src="/assets/images/booking-hero.jpg"
-              alt="Soundariya salon luxury bridal makeover experience"
+              alt="Soundarya salon luxury bridal makeover experience"
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-parlour-plum/95 via-parlour-plum/40 to-transparent z-10" />
@@ -207,7 +207,7 @@ const Booking = () => {
                 className="text-3xl md:text-4xl text-white uppercase tracking-tight"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
-                The Soundariya Experience
+                The Soundarya Experience
               </h3>
               <p className="text-white/80 text-xs sm:text-sm leading-relaxed">
                 Book your journey to radiance today. I'm ready to curate a personalized ritual tailored to you.
@@ -232,6 +232,9 @@ const Booking = () => {
               >
                 Book Appointment
               </h2>
+              <p className="text-parlour-plum/70 text-sm mb-8 leading-relaxed font-medium">
+                Select your preferred service, date and time slot below.
+              </p>
               <p className="text-parlour-plum/70 text-sm mb-8 leading-relaxed font-medium">
                 Select your preferred service, date and time slot below.
               </p>
@@ -283,7 +286,7 @@ const Booking = () => {
                       setFormData({ ...formData, name: e.target.value });
                       if (errors.name) setErrors({ ...errors, name: null });
                     }}
-                    className={`w-full bg-parlour-cream/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
+                    className={`w-full bg-parlour-blush/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
                       errors.name
                         ? 'border-red-500 bg-red-50/50 focus:ring-2 focus:ring-red-400'
                         : 'border-parlour-plum/20 focus:border-parlour-plum focus:bg-white focus:ring-2 focus:ring-parlour-plum/10'
@@ -313,7 +316,7 @@ const Booking = () => {
                         setFormData({ ...formData, email: e.target.value });
                         if (errors.email) setErrors({ ...errors, email: null });
                       }}
-                      className={`w-full bg-parlour-cream/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
+                      className={`w-full bg-parlour-blush/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
                         errors.email
                           ? 'border-red-500 bg-red-50/50 focus:ring-2 focus:ring-red-400'
                           : 'border-parlour-plum/20 focus:border-parlour-plum focus:bg-white focus:ring-2 focus:ring-parlour-plum/10'
@@ -341,7 +344,7 @@ const Booking = () => {
                         setFormData({ ...formData, phone: e.target.value });
                         if (errors.phone) setErrors({ ...errors, phone: null });
                       }}
-                      className={`w-full bg-parlour-cream/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
+                      className={`w-full bg-parlour-blush/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
                         errors.phone
                           ? 'border-red-500 bg-red-50/50 focus:ring-2 focus:ring-red-400'
                           : 'border-parlour-plum/20 focus:border-parlour-plum focus:bg-white focus:ring-2 focus:ring-parlour-plum/10'
@@ -370,7 +373,7 @@ const Booking = () => {
                         setFormData({ ...formData, service: e.target.value });
                         if (errors.service) setErrors({ ...errors, service: null });
                       }}
-                      className={`w-full bg-parlour-cream/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
+                      className={`w-full bg-parlour-blush/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
                         errors.service
                           ? 'border-red-500 bg-red-50/50 focus:ring-2 focus:ring-red-400'
                           : 'border-parlour-plum/20 focus:border-parlour-plum focus:bg-white focus:ring-2 focus:ring-parlour-plum/10'
@@ -407,7 +410,7 @@ const Booking = () => {
                         setFormData({ ...formData, date: e.target.value });
                         if (errors.date) setErrors({ ...errors, date: null });
                       }}
-                      className={`w-full bg-parlour-cream/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
+                      className={`w-full bg-parlour-blush/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
                         errors.date
                           ? 'border-red-500 bg-red-50/50 focus:ring-2 focus:ring-red-400'
                           : 'border-parlour-plum/20 focus:border-parlour-plum focus:bg-white focus:ring-2 focus:ring-parlour-plum/10'
@@ -435,7 +438,7 @@ const Booking = () => {
                       setFormData({ ...formData, time: e.target.value });
                       if (errors.time) setErrors({ ...errors, time: null });
                     }}
-                    className={`w-full bg-parlour-cream/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
+                    className={`w-full bg-parlour-blush/40 p-3.5 text-parlour-plum font-medium rounded-xl border transition-all text-sm outline-none ${
                       errors.time
                         ? 'border-red-500 bg-red-50/50 focus:ring-2 focus:ring-red-400'
                         : 'border-parlour-plum/20 focus:border-parlour-plum focus:bg-white focus:ring-2 focus:ring-parlour-plum/10'
@@ -468,7 +471,7 @@ const Booking = () => {
                     placeholder="Mention skin concerns, preferred stylist, or event details..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-parlour-cream/40 p-3.5 text-parlour-plum font-medium rounded-xl border border-parlour-plum/20 focus:border-parlour-plum focus:bg-white focus:ring-2 focus:ring-parlour-plum/10 transition-all text-sm outline-none resize-none"
+                    className="w-full bg-parlour-blush/40 p-3.5 text-parlour-plum font-medium rounded-xl border border-parlour-plum/20 focus:border-parlour-plum focus:bg-white focus:ring-2 focus:ring-parlour-plum/10 transition-all text-sm outline-none resize-none"
                   />
                 </div>
 
