@@ -80,24 +80,29 @@ const Hero = () => {
       {/* Hero content: full-width headline + centered model overlaid on top, matching reference layout */}
       <div className="relative z-10 w-full h-full">
         {/* Tagline — left-aligned, above headline like the reference */}
-        <div className="absolute top-[8%] left-[3%]">
+        <div className="absolute left-[3%]" style={{ top: '8%' }}>
           <p
             ref={taglineRef}
-            className="text-xs md:text-sm tracking-[0.3em] font-medium"
-            style={{ color: '#380b44' }}
+            className="font-medium"
+            style={{
+              color: '#380b44',
+              fontSize: 'clamp(0.75rem, 0.8vw, 1.1rem)',
+              letterSpacing: '0.3em',
+            }}
           >
             FUTURE LOOKS GOOD ON YOU
           </p>
         </div>
 
         {/* Full-width centered headline, near the top like the reference */}
-        <div className="absolute top-[25%] left-0 right-0 flex justify-center">
+        <div className="absolute left-0 right-0 flex justify-center" style={{ top: '25%' }}>
           <h1
             ref={headlineRef}
-            className="text-[clamp(2.5rem,19.5vw,16rem)] leading-[0.82] tracking-[-0.02em] font-black whitespace-nowrap"
+            className="leading-[0.82] tracking-[-0.02em] font-black whitespace-nowrap"
             style={{
               color: '#380b44',
               fontFamily: 'Anton, Impact, Haettenschweiler, sans-serif',
+              fontSize: 'clamp(2.5rem, 19.5vw, 32rem)',
               wordBreak: 'safe',
             }}
           >
@@ -108,38 +113,61 @@ const Hero = () => {
         {/* Model image overlaid on top of headline, centered like the reference */}
         <div
           ref={modelRef}
-          className="absolute z-20 top-[10%] left-[46%] -translate-x-1/2 w-[clamp(240px,60vw,320px)] md:w-[clamp(330px,40vw,520px)]"
+          className="absolute z-20 -translate-x-1/2"
+          style={{
+            bottom: 0,
+            left: '46%',
+            width: 'clamp(360px, 45vw, 900px)',
+          }}
         >
           <img
             src="/assets/images/dancer 2.png"
             alt="Traditional model"
-            className="w-full h-auto object-contain drop-shadow-2xl md:scale-150  scale-150 md:translate-y-18 translate-y-[75px]"
+            className="w-full h-auto object-contain drop-shadow-2xl"
             loading="lazy"
           />
         </div>
 
         {/* Sub-copy + CTA, left-aligned below headline like the reference */}
-        <div className="absolute top-[62%] left-[3%] flex flex-col">
+        <div className="absolute left-[3%] flex flex-col" style={{ top: '62%' }}>
           <p
             ref={subRef}
-            className="max-w-md text-base md:text-lg leading-[2.2] font-medium"
-            style={{ color: '#380b44' }}
+            className="font-medium"
+            style={{
+              color: '#380b44',
+              fontSize: 'clamp(1rem, 1.15vw, 1.6rem)',
+              lineHeight: 2.2,
+              maxWidth: 'min(28rem, 35vw)',
+            }}
           >
             BEAUTY PARLOUR.<br/> SAME YOU. JUST MORE POTENTIAL.
           </p>
 
-          <div ref={ctaRef} className="mt-10">
+          <div ref={ctaRef} style={{ marginTop: 'clamp(2rem, 3vw, 4rem)' }}>
             <a
               href="#booking"
-              className="inline-flex items-center gap-3 rounded-full px-8 py-3.5 text-xs tracking-[0.25em] transition-all duration-300 hover:scale-105 font-medium shadow-sm"
+              className="inline-flex items-center gap-3 rounded-full font-medium transition-all duration-300 hover:scale-105"
               style={{
                 border: '1.5px solid #380b44',
                 color: '#380b44',
                 background: 'transparent',
+                padding: 'clamp(0.75rem, 0.9vw, 1.1rem) clamp(1.75rem, 2vw, 2.5rem)',
+                fontSize: 'clamp(0.7rem, 0.78vw, 0.95rem)',
+                letterSpacing: '0.25em',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
               }}
             >
               EXPLORE THE COLLECTION
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="clamp(14px, 1vw, 18px)"
+                height="clamp(14px, 1vw, 18px)"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
             </a>
